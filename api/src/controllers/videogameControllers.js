@@ -10,13 +10,12 @@ async function getVideogames (req, res, next) {
         let videogamesAPI = game
         ? (await axios(`https://api.rawg.io/api/games?search=${game}&key=${API_KEY}`)).data.results
         : (await axios(`https://api.rawg.io/api/games?key=${API_KEY}`)).data.results
-        videogamesAPI = videogamesAPI.map(e => ({name: e.name, image: e.background_image, genres: e.genres.map(e => e.name)}))
+        videogamesAPI = videogamesAPI.map(e => ({id: e.id, name: e.name, image: e.background_image, genres: e.genres.map(e => e.name)}))
         
         let videogamesDB = game
-        // ? await Videogame.findAll({where: {name: {[Op.substring]: [game]}}, include: Genre})
         ? await Videogame.findAll({where: {name: {[Op.iLike]: `%${game}%`}}, include: Genre})
         : await Videogame.findAll({include: Genre})
-        videogamesDB = videogamesDB.map(e => ({name: e.name, genres: e.genres}))
+        videogamesDB = videogamesDB.map(e => ({id: e.id, name: e.name, genres: e.genres.map(e => e.name)}))
         
         // let videogames = videogamesAPI.concat(videogamesDB)
         let videogames = videogamesDB.concat(videogamesAPI)
@@ -36,11 +35,11 @@ async function getVideogameByID (req, res, next) {
         videogame = {
             name: videogame.name,
             image: videogame.background_image,
-            genres: videogame.genres,
+            genres: videogame.genres.map(e => e.name),
             description: videogame.description,
             released: videogame.released,
             rating: videogame.rating,
-            platforms: videogame.platforms
+            platforms: videogame.platforms.map(e => e.platform.name)
         }
         res.send(videogame)
     } catch (error) {
@@ -51,9 +50,19 @@ async function getVideogameByID (req, res, next) {
                 },
                 include: Genre
             })
+            videogame = {
+                name: videogame.name,
+                // image: videogame.background_image,   // el videojuego creado no tiene imagen
+                genres: videogame.genres.map(e => e.name),
+                description: videogame.description,
+                released: videogame.released,
+                rating: videogame.rating,
+                platforms: videogame.platforms.split(", ")
+            }
             res.send(videogame)
         } catch (error) {
-            res.status(404).send(`No videogame found with id ${id}`)
+            // res.status(404).send(`No videogame found with id ${id}`)
+            next(error)
         }
     }
 }
@@ -71,16 +80,11 @@ async function postVideogame (req, res, next) {
                         name: e
                     }
                 })
+                .then(res => newVideogame.addGenre(res))
             })
             await Promise.all(arrPromises)
-            console.log(arrPromises)
-            let arrPromises2 = arrPromises.map(e => {
-                return newVideogame.addGenre(e.id)
-            })
-            await Promise.all(arrPromises2)
-            console.log(arrPromises2)
         }
-        res.status(201).send(newVideogame);
+        res.status(201).send("Videogame created correctly");
     } catch (error) {
         next(error)
     }

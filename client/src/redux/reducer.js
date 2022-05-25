@@ -1,15 +1,25 @@
+import { GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL } from "./actions"
+
 const initialState = {
-    videogames: []
+    videogames: [],
+    videogameDetail: {},
+
 }
 
 function reducer(state = initialState, {type, payload}) {
     switch (type) {
-        case "GET_VIDEOGAMES": //ponerlo en una constante
+        case GET_VIDEOGAMES:
             return {
                 ...state,
                 videogames: payload
             }
-        default: return state
+        case GET_VIDEOGAME_DETAIL:
+            return {
+                ...state,
+                videogameDetail: payload
+            };
+        default:
+            return state
     }
 }
 
