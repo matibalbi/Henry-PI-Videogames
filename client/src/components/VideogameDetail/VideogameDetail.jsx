@@ -1,6 +1,7 @@
 import {useEffect} from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { getVideogameDetail } from "../../redux/actions"
+import DefaultImage from '../../img/controller.png'
 
 const VideogameDetail = (props) => {
 
@@ -13,6 +14,8 @@ const VideogameDetail = (props) => {
         dispatch(getVideogameDetail(id))
     }, [dispatch, id])
     
+    if (videogameDetail.image === "") videogameDetail.image = DefaultImage
+
     return (
         <div>
             <h3>{videogameDetail?.name}</h3>

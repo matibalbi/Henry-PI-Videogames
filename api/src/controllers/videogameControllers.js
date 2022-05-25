@@ -15,7 +15,7 @@ async function getVideogames (req, res, next) {
         let videogamesDB = game
         ? await Videogame.findAll({where: {name: {[Op.iLike]: `%${game}%`}}, include: Genre})
         : await Videogame.findAll({include: Genre})
-        videogamesDB = videogamesDB.map(e => ({id: e.id, name: e.name, genres: e.genres.map(e => e.name)}))
+        videogamesDB = videogamesDB.map(e => ({id: e.id, name: e.name, image: e.image, genres: e.genres.map(e => e.name)}))
         
         // let videogames = videogamesAPI.concat(videogamesDB)
         let videogames = videogamesDB.concat(videogamesAPI)
@@ -52,7 +52,7 @@ async function getVideogameByID (req, res, next) {
             })
             videogame = {
                 name: videogame.name,
-                // image: videogame.background_image,   // el videojuego creado no tiene imagen
+                image: videogame.image,
                 genres: videogame.genres.map(e => e.name),
                 description: videogame.description,
                 released: videogame.released,
@@ -68,11 +68,13 @@ async function getVideogameByID (req, res, next) {
 }
 
 async function postVideogame (req, res, next) {
-    let {name, genres, description, released, rating, platforms} = req.body
+    let {name, image, description, released, rating, genres, platforms} = req.body
     if (!name || !genres || !description || !platforms) return res.status(404).send("Some mandatory data is missing")
+    if (released === "") released = null
+    if (rating === "") rating = null
     platforms = platforms.join(", ")
     try {
-        const newVideogame = await Videogame.create({name, description, released, rating, platforms})
+        const newVideogame = await Videogame.create({name, image, description, released, rating, platforms})
         if (genres.length) {
             let arrPromises = genres.map(e => {
                 return Genre.findOne({

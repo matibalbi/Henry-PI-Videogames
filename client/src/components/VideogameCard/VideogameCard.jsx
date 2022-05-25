@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
+import DefaultImage from '../../img/controller.png'
 
 const VideogameCard = ({id, name, image, genres}) => {
+  
+  if (image === "") image = DefaultImage
+
   return (
     <div>
         <Link to={`/videogame/${id}`}>
