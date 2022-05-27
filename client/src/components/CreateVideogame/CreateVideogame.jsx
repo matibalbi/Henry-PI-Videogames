@@ -46,7 +46,7 @@ function CreateVideogame() {
 
    const handleSubmit = function(e) {
       e.preventDefault();
-      axios.post('http://localhost:3001/videogames', input)
+      axios.post('http://localhost:3001/videogame', input)
       .then(res => {
          if (res.status === 201) alert('Videogame created successfully')
       })

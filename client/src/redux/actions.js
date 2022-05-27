@@ -1,6 +1,7 @@
 import axios from "axios"
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
 export const GET_VIDEOGAME_DETAIL = 'GET_VIDEOGAME_DETAIL';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 export function getVideogames() {
     return (dispatch) => {
@@ -11,7 +12,13 @@ export function getVideogames() {
 
 export function getVideogameDetail(id) {
     return (dispatch) => {
-        return axios(`http://localhost:3001/videogames/${id}`)
+        return axios(`http://localhost:3001/videogame/${id}`)
         .then(res => dispatch({type: GET_VIDEOGAME_DETAIL, payload: res.data}))
+    }
+}
+
+export function setCurrentPage(number) {
+    return (dispatch) => {
+        dispatch({type: SET_CURRENT_PAGE, payload: number})
     }
 }

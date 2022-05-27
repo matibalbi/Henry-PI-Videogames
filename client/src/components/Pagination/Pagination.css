@@ -1,0 +1,8 @@
+.containerPag {
+    display: flex;
+    justify-content: center;
+}
+
+.numbers {
+    margin: 0px 10px
+}

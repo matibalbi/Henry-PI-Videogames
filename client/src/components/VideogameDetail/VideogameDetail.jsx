@@ -2,6 +2,7 @@ import {useEffect} from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { getVideogameDetail } from "../../redux/actions"
 import DefaultImage from '../../img/controller.png'
+import './VideogameDetail.css'
 
 const VideogameDetail = (props) => {
 
