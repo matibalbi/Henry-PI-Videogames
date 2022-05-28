@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import DefaultImage from '../../img/controller.png'
 import './VideogameCard.css';
 
-const VideogameCard = ({id, name, image, genres}) => {
+const VideogameCard = ({id, name, image, genres, rating}) => {
   
   if (image === "") image = DefaultImage
 
@@ -13,6 +13,7 @@ const VideogameCard = ({id, name, image, genres}) => {
         </Link>
         <img src={image} alt={name} />
         <p>Genres: {genres.join(", ")}</p>
+        <p>Rating: {rating}</p>
     </div>
   );
 };

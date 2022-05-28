@@ -2,21 +2,25 @@ import {useDispatch} from "react-redux"
 import {setCurrentPage} from '../../redux/actions';
 import './Pagination.css';
 
-function Pagination({gamesPerPage, totalGames, paginate}) {
-
-    const dispatch = useDispatch()
+function Pagination({gamesPerPage, totalGames}) {
 
     const pageNumbers = []
-
+    
     for (let i = 1; i <= Math.ceil(totalGames / gamesPerPage); i++) {
         pageNumbers.push(i)
+    }
+
+    const dispatch = useDispatch()
+    
+    function handleClick(number) {
+        dispatch(setCurrentPage(number))
     }
 
     return (
         <div className='containerPag'>
             {
                 pageNumbers.map(number =>
-                    <button key={number} className='numbers' onClick={() => dispatch(setCurrentPage(number))}>
+                    <button key={number} className='numbers' onClick={() => handleClick(number)}>
                         {number}
                     </button>
                 )

@@ -25,6 +25,7 @@ async function getVideogameByID (req, res, next) {
                     id
                 },
                 include: Genre
+                // include: {model: Genre, attributes: ["name"], through: {attributes: []}}
             })
             videogame = {
                 name: videogame.name,
