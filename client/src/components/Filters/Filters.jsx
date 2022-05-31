@@ -1,39 +1,43 @@
-import {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux"
-import {getGenres, setCurrentPage, setFilterGenre, setFilterType, setSort} from "../../redux/actions";
+import {setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating} from "../../redux/actions";
 import './Filters.css';
 
 const Filters = () => {
     
-    let genres = useSelector(state => state.genres)
+    const genres = useSelector(state => state.genres)
+    const sortName = useSelector(state => state.sortName)
+    const sortRating = useSelector(state => state.sortRating)
+    const filterGenre = useSelector(state => state.filterGenre)
+    const filterType = useSelector(state => state.filterType)
+    const currentPage = useSelector(state => state.currentPage)
 
     const dispatch = useDispatch()
-    
-    useEffect(() => {
-        dispatch(getGenres())
-    },[dispatch])
-        
-    const handleSortChange = e => {
-        dispatch(setSort(e.target.value))
-        if (e.target.id === "alpha") document.getElementById('rating').value = ""
-        else document.getElementById('alpha').value = ""
+            
+    const handleSortNameChange = e => {
+        dispatch(setSortName(e.target.value))
+        if (sortRating !== "") dispatch(setSortRating(""))
+    }
+
+    const handleSortRatingChange = e => {
+        dispatch(setSortRating(e.target.value))
+        if (sortName !== "") dispatch(setSortName(""))
     }
 
     const handleFilterGenreChange = e => {
         dispatch(setFilterGenre(e.target.value))
-        dispatch(setCurrentPage(1))
+        if (currentPage !== 1) dispatch(setCurrentPage(1))
     }
 
     const handleFilterTypeChange = e => {
         dispatch(setFilterType(e.target.value))
-        dispatch(setCurrentPage(1))
+        if (currentPage !== 1) dispatch(setCurrentPage(1))
     }
 
     return (
         <div className='containerFil'>
             <div className='filters'>
                 <label>Order:</label>
-                <select id="alpha" defaultValue="" onChange={handleSortChange}>
+                <select value={sortName} onChange={handleSortNameChange}>
                     <option value="" disabled hidden>None</option>
                     <option value="nameAZ">A-Z</option>
                     <option value="nameZA">Z-A</option>
@@ -41,7 +45,7 @@ const Filters = () => {
             </div>
             <div className='filters'>
                 <label>Rating:</label>
-                <select id="rating" defaultValue="" onChange={handleSortChange}>
+                <select value={sortRating} onChange={handleSortRatingChange}>
                     <option value="" disabled hidden>None</option>
                     <option value="ratingBW">Best to worst</option>
                     <option value="ratingWB">Worst to best</option>
@@ -49,7 +53,7 @@ const Filters = () => {
             </div>
             <div className='filters'>
                 <label>Genres:</label>
-                <select defaultValue="all" onChange={handleFilterGenreChange}>
+                <select value={filterGenre} onChange={handleFilterGenreChange}>
                     <option value="all">All</option>
                     {genres.map((genre) => (
                         <option key={genre.id} value={genre.name}>{genre.name}</option>
@@ -58,7 +62,7 @@ const Filters = () => {
             </div>
             <div className='filters'>
                 <label>Type:</label>
-                <select defaultValue="all" onChange={handleFilterTypeChange}>
+                <select value={filterType} onChange={handleFilterTypeChange}>
                     <option value="all">All</option>
                     <option value="created">Created</option>
                     <option value="existing">Existing</option>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getVideogameDetail } from "../../redux/actions"
 import DefaultImage from '../../img/controller.png'
 import './VideogameDetail.css'
+import Loader from "../Loader/Loader"
 
 const VideogameDetail = (props) => {
 
@@ -17,6 +18,8 @@ const VideogameDetail = (props) => {
     }, [dispatch, id])
     
     if (!videogameDetail.image) videogameDetail.image = DefaultImage
+
+    if (videogameDetail.id?.toString() !== id) return <Loader/>
 
     return (
         <div>

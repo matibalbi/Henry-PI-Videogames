@@ -11,6 +11,7 @@ const getVideogameByID = async (req, res, next) => {
         try {
             let videogame = await Videogame.findOne({where: {id}, include: Genre})
             videogame = {
+                id: videogame.id,
                 name: videogame.name,
                 image: videogame.image,
                 genres: videogame.genres.map(e => e.name),
@@ -28,6 +29,7 @@ const getVideogameByID = async (req, res, next) => {
         try {
             let videogame = (await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)).data
             videogame = {
+                id: videogame.id,
                 name: videogame.name,
                 image: videogame.background_image,
                 genres: videogame.genres.map(e => e.name),

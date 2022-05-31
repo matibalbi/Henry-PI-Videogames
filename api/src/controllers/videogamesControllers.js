@@ -43,7 +43,7 @@ const getVideogames = async (req, res, next) => {
         videogamesAPI = videogamesAPI.map(e => ({id: e.id, name: e.name, image: e.background_image, rating: e.rating, genres: e.genres.map(e => e.name)}))
         let videogames = [...videogamesDB, ...videogamesAPI]
 
-        if (!videogames.length) return res.status(404).send("No videogames found")
+        // if (!videogames.length) return res.status(404).send("No videogames found")
         if (game && videogames.length > 15) videogames.splice(15)
         res.send(videogames)
 

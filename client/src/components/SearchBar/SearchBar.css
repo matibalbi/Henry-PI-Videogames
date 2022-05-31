@@ -1,7 +1,11 @@
-.containerSearch {
+.containerForm {
     display: flex;
     justify-content: center;
-    margin: 15px 0px
+    margin-left: 58px;
+}
+
+.reload {
+    margin-right: 58px
 }
 
 .search {

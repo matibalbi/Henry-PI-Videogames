@@ -1,9 +1,11 @@
-import {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {sortNameAZ, sortNameZA, sortRatingBW, sortRatingWB} from "../../controllers/controllers";
-import {getVideogames} from "../../redux/actions"
+import {getGenres, getVideogames} from "../../redux/actions"
+import BackToAllGames from "../BackToAllGames/BackToAllGames";
 import Filters from "../Filters/Filters";
+import Loader from "../Loader/Loader";
 import Pagination from "../Pagination/Pagination";
+import Reload from "../Reload/Reload";
 import SearchBar from "../SearchBar/SearchBar";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import './Home.css';
@@ -11,27 +13,34 @@ import './Home.css';
 const Home = () => {
 
     // Define global states from store
-    let videogames = useSelector(state => state.videogames)
+    const videogamesAll = useSelector(state => state.videogames)
+    const videogamesSearch = useSelector(state => state.videogamesSearch)
     const currentPage = useSelector(state => state.currentPage)
-    const sort = useSelector(state => state.sort)
+    const sortName = useSelector(state => state.sortName)
+    const sortRating = useSelector(state => state.sortRating)
     const filterGenre = useSelector(state => state.filterGenre)
     const filterType = useSelector(state => state.filterType)
+    const loadingVideogames = useSelector(state => state.loadingVideogames)
+    const loadingGenres = useSelector(state => state.loadingGenres)
+    const search = useSelector(state => state.search)
 
     const dispatch = useDispatch()
 
-    // Get videogames
-    useEffect(() => {
-        dispatch(getVideogames())
-    },[dispatch])
+    let videogames = search ? videogamesSearch.slice() : videogamesAll.slice()
 
     // Sort videogames
-    switch (sort) {
+    switch (sortName) {
         case "nameAZ":
             videogames.sort(sortNameAZ)
             break
         case "nameZA":
             videogames.sort(sortNameZA)
             break
+        default:
+            break
+    }
+
+    switch (sortRating) {
         case "ratingBW":
             videogames.sort(sortRatingBW)
             break
@@ -56,25 +65,37 @@ const Home = () => {
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGames = videogames.slice(indexOfFirstGame, indexOfLastGame)
 
+    if (loadingVideogames && loadingGenres) {
+        dispatch(getVideogames())
+        dispatch(getGenres())
+    }
+
     return (
         <div>
-            <SearchBar />
+            <div className='containerReloadSearch'>
+                <Reload />
+                <SearchBar />
+            </div>
             <Filters />
             <Pagination gamesPerPage={gamesPerPage} totalGames={videogames.length}/>
-            <div className='cards'>
-                {
-                    currentGames?.map(vg =>
-                        <VideogameCard 
-                        key={vg.id}
-                        id={vg.id}
-                        name={vg.name}
-                        image={vg.image}
-                        genres={vg.genres}
-                        rating={vg.rating}
-                        />
-                    )
-                }
-            </div>
+            {search && <BackToAllGames/>}
+            {(loadingVideogames || loadingGenres) && <Loader />}
+            {!(loadingVideogames || loadingGenres) &&
+                <div className='cards'>
+                    {
+                        currentGames?.map(vg =>
+                            <VideogameCard 
+                            key={vg.id}
+                            id={vg.id}
+                            name={vg.name}
+                            image={vg.image}
+                            genres={vg.genres}
+                            rating={vg.rating}
+                            />
+                        )
+                    }
+                </div>
+            }
         </div>
     )
 }

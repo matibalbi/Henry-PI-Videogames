@@ -2,11 +2,15 @@ import axios from "axios"
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
 export const GET_VIDEOGAME_DETAIL = 'GET_VIDEOGAME_DETAIL';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-export const SET_SORT = 'SET_SORT';
+export const SET_SORT_NAME = 'SET_SORT_NAME';
+export const SET_SORT_RATING = 'SET_SORT_RATING';
 export const GET_GENRES = 'GET_GENRES';
 export const SET_FILTER_GENRE = 'SET_FILTER_GENRE';
 export const SET_FILTER_TYPE = 'SET_FILTER_TYPE';
 export const GET_VIDEOGAMES_SEARCH = 'GET_VIDEOGAMES_SEARCH';
+export const SET_LOADING_VIDEOGAMES = 'SET_LOADING_VIDEOGAMES';
+export const SET_LOADING_GENRES = 'SET_LOADING_GENRES';
+export const SET_SEARCH = 'SET_SEARCH';
 
 export const getVideogames = () => {
     return (dispatch) => {
@@ -28,9 +32,15 @@ export const setCurrentPage = number => {
     }
 }
 
-export const setSort = sortType => {
+export const setSortName = sortType => {
     return (dispatch) => {
-        dispatch({type: SET_SORT, payload: sortType})
+        dispatch({type: SET_SORT_NAME, payload: sortType})
+    }
+}
+
+export const setSortRating = sortType => {
+    return (dispatch) => {
+        dispatch({type: SET_SORT_RATING, payload: sortType})
     }
 }
 
@@ -59,5 +69,23 @@ export const getVideogamesSearch = videogame => {
     return (dispatch) => {
         return axios(`http://localhost:3001/videogames?game=${videogame}`)
         .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH, payload: res.data}))
+    }
+}
+
+export const setLoadingVideogames = (value) => {
+    return (dispatch) => {
+        dispatch({type: SET_LOADING_VIDEOGAMES, payload: value})
+    }
+}
+
+export const setLoadingGenres = (value) => {
+    return (dispatch) => {
+        dispatch({type: SET_LOADING_GENRES, payload: value})
+    }
+}
+
+export const setSearch = (value) => {
+    return (dispatch) => {
+        dispatch({type: SET_SEARCH, payload: value})
     }
 }
