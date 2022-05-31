@@ -4,10 +4,11 @@ import {sortNameAZ, sortNameZA, sortRatingBW, sortRatingWB} from "../../controll
 import {getVideogames} from "../../redux/actions"
 import Filters from "../Filters/Filters";
 import Pagination from "../Pagination/Pagination";
+import SearchBar from "../SearchBar/SearchBar";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import './Home.css';
 
-function Home() {
+const Home = () => {
 
     // Define global states from store
     let videogames = useSelector(state => state.videogames)
@@ -42,13 +43,10 @@ function Home() {
     }
 
     // Filter videogames
-    if (filterGenre !== "all") {
-        videogames = videogames.filter(e => e.genres.includes(filterGenre))
-    }
-
-    if (filterType !== "all") {
-        videogames = videogames.filter(e => e.type === filterType)
-    }
+    if (filterGenre !== "all") videogames = videogames.filter(e => e.genres.includes(filterGenre))
+    
+    if (filterType === "created") videogames = videogames.filter(e => e.id.length === 36)
+    if (filterType === "existing") videogames = videogames.filter(e => e.id.length !== 36)
 
     // Set current page and games per page
     const gamesPerPage = 15
@@ -60,7 +58,8 @@ function Home() {
 
     return (
         <div>
-            <Filters/>
+            <SearchBar />
+            <Filters />
             <Pagination gamesPerPage={gamesPerPage} totalGames={videogames.length}/>
             <div className='cards'>
                 {

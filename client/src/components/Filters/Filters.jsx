@@ -1,47 +1,48 @@
 import {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux"
-import {getGenres, setFilterGenre, setFilterType, setSort} from "../../redux/actions";
-import {sortNameAZ} from "../../controllers/controllers";
+import {getGenres, setCurrentPage, setFilterGenre, setFilterType, setSort} from "../../redux/actions";
 import './Filters.css';
 
-function Filters() {
+const Filters = () => {
     
-    const genres = useSelector(state => state.genres)
-
-    genres.sort(sortNameAZ)
+    let genres = useSelector(state => state.genres)
 
     const dispatch = useDispatch()
-
+    
     useEffect(() => {
         dispatch(getGenres())
     },[dispatch])
-
-    function handleSortChange(e) {
+        
+    const handleSortChange = e => {
         dispatch(setSort(e.target.value))
+        if (e.target.id === "alpha") document.getElementById('rating').value = ""
+        else document.getElementById('alpha').value = ""
     }
 
-    function handleFilterGenreChange(e) {
+    const handleFilterGenreChange = e => {
         dispatch(setFilterGenre(e.target.value))
+        dispatch(setCurrentPage(1))
     }
 
-    function handleFilterTypeChange(e) {
+    const handleFilterTypeChange = e => {
         dispatch(setFilterType(e.target.value))
+        dispatch(setCurrentPage(1))
     }
 
     return (
         <div className='containerFil'>
             <div className='filters'>
                 <label>Order:</label>
-                <select defaultValue="" onChange={handleSortChange}>
-                    <option value="" disabled>None</option>
+                <select id="alpha" defaultValue="" onChange={handleSortChange}>
+                    <option value="" disabled hidden>None</option>
                     <option value="nameAZ">A-Z</option>
                     <option value="nameZA">Z-A</option>
                 </select>
             </div>
             <div className='filters'>
                 <label>Rating:</label>
-                <select defaultValue="" onChange={handleSortChange}>
-                    <option value="" disabled>None</option>
+                <select id="rating" defaultValue="" onChange={handleSortChange}>
+                    <option value="" disabled hidden>None</option>
                     <option value="ratingBW">Best to worst</option>
                     <option value="ratingWB">Worst to best</option>
                 </select>

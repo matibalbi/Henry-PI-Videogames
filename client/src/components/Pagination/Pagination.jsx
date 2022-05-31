@@ -2,7 +2,7 @@ import {useDispatch} from "react-redux"
 import {setCurrentPage} from '../../redux/actions';
 import './Pagination.css';
 
-function Pagination({gamesPerPage, totalGames}) {
+const Pagination = ({gamesPerPage, totalGames}) => {
 
     const pageNumbers = []
     
@@ -12,7 +12,7 @@ function Pagination({gamesPerPage, totalGames}) {
 
     const dispatch = useDispatch()
     
-    function handleClick(number) {
+    const handleClick = number => {
         dispatch(setCurrentPage(number))
     }
 

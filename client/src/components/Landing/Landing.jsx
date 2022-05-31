@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import './Landing.css';
 
-function Landing() {
+const Landing = () => {
     return (
-        <div>
+        <div>   {/*className="backgroundImage"*/}
             <Link to={`/home`}>
                 <button className="center">Ingresar</button>
             </Link>

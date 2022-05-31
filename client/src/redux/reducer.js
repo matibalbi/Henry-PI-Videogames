@@ -1,4 +1,5 @@
-import { GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT } from "./actions"
+import {GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES_SEARCH, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT} from "./actions"
+import {sortNameAZ} from "../controllers/controllers";
 
 const initialState = {
     videogames: [],
@@ -10,7 +11,7 @@ const initialState = {
     filterType: "all"
 }
 
-function reducer(state = initialState, {type, payload}) {
+const reducer = (state = initialState, {type, payload}) => {
     switch (type) {
         case GET_VIDEOGAMES:
             return {
@@ -33,6 +34,7 @@ function reducer(state = initialState, {type, payload}) {
                 sort: payload
             }
         case GET_GENRES:
+            payload.sort(sortNameAZ)
             return {
                 ...state,
                 genres: payload
@@ -46,6 +48,11 @@ function reducer(state = initialState, {type, payload}) {
             return {
                 ...state,
                 filterType: payload
+            }
+        case GET_VIDEOGAMES_SEARCH:
+            return {
+                ...state,
+                videogames: payload
             }
         default:
             return state

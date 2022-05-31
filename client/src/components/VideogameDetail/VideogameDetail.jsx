@@ -9,13 +9,14 @@ const VideogameDetail = (props) => {
     const videogameDetail = useSelector(state => state.videogameDetail)
 
     const id = props.match.params.id
+    
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getVideogameDetail(id))
     }, [dispatch, id])
     
-    if (videogameDetail.image === "") videogameDetail.image = DefaultImage
+    if (!videogameDetail.image) videogameDetail.image = DefaultImage
 
     return (
         <div>

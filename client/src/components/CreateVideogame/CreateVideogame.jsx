@@ -1,7 +1,13 @@
 import axios from 'axios';
-import { useState } from 'react';
+import {useState} from 'react';
+import {useSelector} from "react-redux"
 
-function CreateVideogame() {
+const CreateVideogame = () => {
+
+   const platforms = ["Android", "Game Boy", "GameCube", "iOS", "Nintendo 64", "Nintendo DS", "Nintendo Switch", "PC", "PlayStation", "PlayStation 2",
+   "PlayStation 3", "PlayStation 4", "PlayStation 5", "PS Vita", "PSP", "SEGA", "Wii", "Xbox", "Xbox 360", "Xbox One", "Xbox Series S/X"]
+   
+   const genres = useSelector(state => state.genres)
 
    const [input, setInput] = useState({
       name: '',
@@ -15,7 +21,7 @@ function CreateVideogame() {
 
    const [errors, setErrors] = useState({});
 
-   const handleInputChange = function(e) {
+   const handleInputChange = e => {
       setInput({
         ...input,
         [e.target.name]: e.target.value
@@ -26,25 +32,34 @@ function CreateVideogame() {
       }));
    }
 
-   const handleSelectChange = function(e) {
-      const options = e.target.options
-      const selected = []
-      for (let i = 0; i < options.length; i++) {
-        if (options[i].selected) {
-          selected.push(options[i].value)
-        }      
+   const handleSelectChange = e => {
+      const selected = input[e.target.name]
+      if (!selected.includes(e.target.value)) {
+         selected.push(e.target.value)
+         setInput({
+            ...input,
+            [e.target.name]: selected
+         })
+         setErrors(validate({
+            ...input,
+            [e.target.name]: selected
+         }));
       }
+   }
+   
+   const deleteChoice = (category, value) => {
+      const newValues = input[category].filter(e => e !== value)
       setInput({
          ...input,
-         [e.target.name]: selected
+         [category]: newValues
       })
       setErrors(validate({
          ...input,
-         [e.target.name]: selected
-      }));
+         [category]: newValues
+      }))
    }
 
-   const handleSubmit = function(e) {
+   const handleSubmit = e => {
       e.preventDefault();
       axios.post('http://localhost:3001/videogame', input)
       .then(res => {
@@ -52,7 +67,7 @@ function CreateVideogame() {
       })
    }
 
-   const validate = function(input) {
+   const validate = input => {
       let errors = {};
       if (!input.name) errors.name = 'Name is required'
       else if (!/^[^@#$%^&]+$/.test(input.name)) errors.name = 'Name must not contain the following special characters: @#$%^&)'
@@ -77,6 +92,7 @@ function CreateVideogame() {
                />
                {errors.name && (<span>{errors.name}</span>)}
             </div>
+
             <div>
                <label>Description: </label>
                <textarea
@@ -86,6 +102,7 @@ function CreateVideogame() {
                />
                {errors.description && (<span>{errors.description}</span>)}
             </div>
+
             <div>
                <label>Release date: </label>
                <input
@@ -95,6 +112,7 @@ function CreateVideogame() {
                />
                {errors.released && (<span>{errors.released}</span>)}
             </div>
+
             <div>
                <label>Rating: </label>
                <input
@@ -105,6 +123,7 @@ function CreateVideogame() {
                />
                {errors.rating && (<span>{errors.rating}</span>)}
             </div>
+
             <div>
                <label>Image URL: </label>
                <input
@@ -113,63 +132,42 @@ function CreateVideogame() {
                   onChange={handleInputChange}
                   />
             </div>
+
             <div>
                <label>Genres: </label>
-               <select multiple size="8" name="genres" value={input.genres} onChange={handleSelectChange}>
-                  <option>Action</option>
-                  <option>Indie</option>
-                  <option>Adventure</option>
-                  <option>RPG</option>
-                  <option>Strategy</option>
-                  <option>Shooter</option>
-                  <option>Casual</option>
-                  <option>Simulation</option>
-                  <option>Puzzle</option>
-                  <option>Arcade</option>
-                  <option>Platformer</option>
-                  <option>Racing</option>
-                  <option>Massively Multiplayer</option>
-                  <option>Sports</option>
-                  <option>Fighting</option>
-                  <option>Family</option>
-                  <option>Board Games</option>
-                  <option>Educational</option>
-                  <option>Card</option>
+               <select defaultValue="select" name="genres" onChange={handleSelectChange}>
+                  <option value="select" disabled hidden>Select...</option>
+                  {genres.map((genre) => (
+                     <option key={genre.id} value={genre.name}>{genre.name}</option>
+                  ))}
                </select>
+               {input.genres.map((genre, i) => (
+                  <div key={i}>
+                     <button type="button" onClick={() => deleteChoice("genres", genre)}>X</button>
+                     <span>{genre}</span>
+                  </div>
+               ))}
                {errors.genres && (<span>{errors.genres}</span>)}
-               {/* Géneros seleccionados:{input.genres.map((genre) => {
-                  return (<p>{genre}</p>)
-               }
-               )} */}
             </div>
+
             <div>
                <label>Platforms: </label>
-               <select multiple size="8" name="platforms" value={input.platforms} onChange={handleSelectChange}>
-                  <option>Android</option>
-                  <option>Game Boy</option>
-                  <option>GameCube</option>
-                  <option>iOS</option>
-                  <option>Nintendo 64</option>
-                  <option>Nintendo DS</option>
-                  <option>Nintendo Switch</option>
-                  <option>PC</option>
-                  <option>PlayStation</option>
-                  <option>PlayStation 2</option>
-                  <option>PlayStation 3</option>
-                  <option>PlayStation 4</option>
-                  <option>PlayStation 5</option>
-                  <option>PS Vita</option>
-                  <option>PSP</option>
-                  <option>SEGA</option>
-                  <option>Wii</option>
-                  <option>Xbox</option>
-                  <option>Xbox 360</option>
-                  <option>Xbox One</option>
-                  <option>Xbox Series S/X</option>
+               <select defaultValue="select" name="platforms" onChange={handleSelectChange}>
+                  <option value="select" disabled hidden>Select...</option>
+                  {platforms.map((platform, i) => (
+                     <option key={i} value={platform}>{platform}</option>
+                  ))}
                </select>
+               {input.platforms.map((platform, i) => (
+                  <div key={i}>
+                     <button type="button" onClick={() => deleteChoice("platforms", platform)}>X</button>
+                     <span>{platform}</span>
+                  </div>
+               ))}
                {errors.platforms && (<span>{errors.platforms}</span>)}
             </div>
-            <button type="submit" disabled={Object.keys(errors).length? true : false}>Create Videogame</button>
+
+            <button type="submit" disabled={Object.keys(errors).length || !input.name ? true : false}>Create Videogame</button>
          </form>
       </div>
    );

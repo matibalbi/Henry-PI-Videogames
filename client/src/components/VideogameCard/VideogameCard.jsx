@@ -4,7 +4,7 @@ import './VideogameCard.css';
 
 const VideogameCard = ({id, name, image, genres, rating}) => {
   
-  if (image === "") image = DefaultImage
+  if (!image) image = DefaultImage
 
   return (
     <div className="container">
