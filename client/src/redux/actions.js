@@ -1,21 +1,30 @@
 import axios from "axios"
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
+export const GET_VIDEOGAMES_SEARCH = 'GET_VIDEOGAMES_SEARCH';
 export const GET_VIDEOGAME_DETAIL = 'GET_VIDEOGAME_DETAIL';
-export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const GET_GENRES = 'GET_GENRES';
+export const SET_SEARCH = 'SET_SEARCH';
+export const SET_INPUT_SEARCH = 'SET_INPUT_SEARCH';
 export const SET_SORT_NAME = 'SET_SORT_NAME';
 export const SET_SORT_RATING = 'SET_SORT_RATING';
-export const GET_GENRES = 'GET_GENRES';
 export const SET_FILTER_GENRE = 'SET_FILTER_GENRE';
 export const SET_FILTER_TYPE = 'SET_FILTER_TYPE';
-export const GET_VIDEOGAMES_SEARCH = 'GET_VIDEOGAMES_SEARCH';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_LOADING_VIDEOGAMES = 'SET_LOADING_VIDEOGAMES';
 export const SET_LOADING_GENRES = 'SET_LOADING_GENRES';
-export const SET_SEARCH = 'SET_SEARCH';
+export const SET_LOADING_SEARCH = 'SET_LOADING_SEARCH';
 
 export const getVideogames = () => {
     return (dispatch) => {
         return axios("http://localhost:3001/videogames")
         .then(res => dispatch({type: GET_VIDEOGAMES, payload: res.data}))
+    }
+}
+
+export const getVideogamesSearch = videogame => {
+    return (dispatch) => {
+        return axios(`http://localhost:3001/videogames?game=${videogame}`)
+        .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH, payload: res.data}))
     }
 }
 
@@ -26,9 +35,24 @@ export const getVideogameDetail = id => {
     }
 }
 
-export const setCurrentPage = number => {
+export const getGenres = () => {
     return (dispatch) => {
-        dispatch({type: SET_CURRENT_PAGE, payload: number})
+        return axios("http://localhost:3001/genres")
+        .then(res => {
+            dispatch({type: GET_GENRES, payload: res.data})
+        })
+    }
+}
+
+export const setSearch = (value) => {
+    return (dispatch) => {
+        dispatch({type: SET_SEARCH, payload: value})
+    }
+}
+
+export const setInputSearch = (value) => {
+    return (dispatch) => {
+        dispatch({type: SET_INPUT_SEARCH, payload: value})
     }
 }
 
@@ -44,15 +68,6 @@ export const setSortRating = sortType => {
     }
 }
 
-export const getGenres = () => {
-    return (dispatch) => {
-        return axios("http://localhost:3001/genres")
-        .then(res => {
-            dispatch({type: GET_GENRES, payload: res.data})
-        })
-    }
-}
-
 export const setFilterGenre = value => {
     return (dispatch) => {
         dispatch({type: SET_FILTER_GENRE, payload: value})
@@ -65,10 +80,9 @@ export const setFilterType = value => {
     }
 }
 
-export const getVideogamesSearch = videogame => {
+export const setCurrentPage = number => {
     return (dispatch) => {
-        return axios(`http://localhost:3001/videogames?game=${videogame}`)
-        .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH, payload: res.data}))
+        dispatch({type: SET_CURRENT_PAGE, payload: number})
     }
 }
 
@@ -84,8 +98,8 @@ export const setLoadingGenres = (value) => {
     }
 }
 
-export const setSearch = (value) => {
+export const setLoadingSearch = (value) => {
     return (dispatch) => {
-        dispatch({type: SET_SEARCH, payload: value})
+        dispatch({type: SET_LOADING_SEARCH, payload: value})
     }
 }

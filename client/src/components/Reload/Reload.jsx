@@ -10,6 +10,11 @@ const Reload = () => {
   const filterType = useSelector(state => state.filterType)
   const currentPage = useSelector(state => state.currentPage)
   const search = useSelector(state => state.search)
+  const loadingVideogames = useSelector(state => state.loadingVideogames)
+  const loadingGenres = useSelector(state => state.loadingGenres)
+  const loadingSearch = useSelector(state => state.loadingSearch)
+
+  const loading = loadingVideogames || loadingGenres || loadingSearch
 
   const dispatch = useDispatch()
 
@@ -18,13 +23,13 @@ const Reload = () => {
     dispatch(setLoadingGenres(true))
     if (sortName !== "") dispatch(setSortName(""))
     if (sortRating !== "") dispatch(setSortRating(""))
-    if (filterGenre !== "all") dispatch(setFilterGenre("all"))
-    if (filterType !== "all") dispatch(setFilterType("all"))
-    if (currentPage !== "1") dispatch(setCurrentPage(1))
+    if (filterGenre !== "") dispatch(setFilterGenre(""))
+    if (filterType !== "") dispatch(setFilterType(""))
+    if (currentPage !== 1) dispatch(setCurrentPage(1))
   }
 
   return (
-    <button type="button" className='reload' disabled={search} onClick={handleClick}>Reload videogames</button>
+    <button type="button" className='reload' disabled={search || loading} onClick={handleClick}>Reload videogames</button>
   );
 }
 

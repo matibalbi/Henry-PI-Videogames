@@ -1,11 +1,30 @@
-.containerForm {
+.containerFormSearch {
     display: flex;
     justify-content: center;
     margin-left: 58px;
 }
 
-.reload {
-    margin-right: 58px
+.containerInputSearch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray;
+    width: 200px
+}
+
+.inputSearch {
+    margin: 0px 5px;
+    border: none;
+}
+
+.inputSearch:focus {
+    outline: none;
+}
+
+.eraseinputSearch {
+    border: none;
+    background: none;
+    color: gray;
 }
 
 .search {

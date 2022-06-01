@@ -2,10 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin: 10px 0px
 }
 
 .containerReloadSearch {
     display: flex;
     justify-content: center;
-    margin: 15px 0px;
+    margin: 20px 0px;
 }

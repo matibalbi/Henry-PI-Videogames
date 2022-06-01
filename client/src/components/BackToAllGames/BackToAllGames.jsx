@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux"
-import {setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating, setSearch} from "../../redux/actions";
+import {setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating, setSearch, setInputSearch} from "../../redux/actions";
 import './BackToAllGames.css'
 
 const BackToAllGames = () => {
@@ -14,11 +14,12 @@ const BackToAllGames = () => {
 
   const handleClick = () => {
     dispatch(setSearch(false))
+    dispatch(setInputSearch(""))
     if (sortName !== "") dispatch(setSortName(""))
     if (sortRating !== "") dispatch(setSortRating(""))
-    if (filterGenre !== "all") dispatch(setFilterGenre("all"))
-    if (filterType !== "all") dispatch(setFilterType("all"))
-    if (currentPage !== "1") dispatch(setCurrentPage(1))
+    if (filterGenre !== "") dispatch(setFilterGenre(""))
+    if (filterType !== "") dispatch(setFilterType(""))
+    if (currentPage !== 1) dispatch(setCurrentPage(1))
   }
 
   return (

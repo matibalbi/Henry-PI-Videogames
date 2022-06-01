@@ -23,6 +23,7 @@ const Home = () => {
     const loadingVideogames = useSelector(state => state.loadingVideogames)
     const loadingGenres = useSelector(state => state.loadingGenres)
     const search = useSelector(state => state.search)
+    const loadingSearch = useSelector(state => state.loadingSearch)
 
     const dispatch = useDispatch()
 
@@ -52,7 +53,7 @@ const Home = () => {
     }
 
     // Filter videogames
-    if (filterGenre !== "all") videogames = videogames.filter(e => e.genres.includes(filterGenre))
+    if (filterGenre !== "" && filterGenre !== "all") videogames = videogames.filter(e => e.genres.includes(filterGenre))
     
     if (filterType === "created") videogames = videogames.filter(e => e.id.length === 36)
     if (filterType === "existing") videogames = videogames.filter(e => e.id.length !== 36)
@@ -64,6 +65,9 @@ const Home = () => {
     const indexOfLastGame = currentPage * gamesPerPage
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGames = videogames.slice(indexOfFirstGame, indexOfLastGame)
+
+    // Define loadings
+    const loading = loadingVideogames || loadingGenres || loadingSearch
 
     if (loadingVideogames && loadingGenres) {
         dispatch(getVideogames())
@@ -79,8 +83,8 @@ const Home = () => {
             <Filters />
             <Pagination gamesPerPage={gamesPerPage} totalGames={videogames.length}/>
             {search && <BackToAllGames/>}
-            {(loadingVideogames || loadingGenres) && <Loader />}
-            {!(loadingVideogames || loadingGenres) &&
+            {loading && <Loader />}
+            {!loading &&
                 <div className='cards'>
                     {
                         currentGames?.map(vg =>

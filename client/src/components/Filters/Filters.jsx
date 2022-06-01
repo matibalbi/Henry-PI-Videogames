@@ -36,24 +36,22 @@ const Filters = () => {
     return (
         <div className='containerFil'>
             <div className='filters'>
-                <label>Order:</label>
                 <select value={sortName} onChange={handleSortNameChange}>
-                    <option value="" disabled hidden>None</option>
+                    <option value="" disabled>Name</option>
                     <option value="nameAZ">A-Z</option>
                     <option value="nameZA">Z-A</option>
                 </select>
             </div>
             <div className='filters'>
-                <label>Rating:</label>
                 <select value={sortRating} onChange={handleSortRatingChange}>
-                    <option value="" disabled hidden>None</option>
+                    <option value="" disabled>Rating</option>
                     <option value="ratingBW">Best to worst</option>
                     <option value="ratingWB">Worst to best</option>
                 </select>
             </div>
             <div className='filters'>
-                <label>Genres:</label>
                 <select value={filterGenre} onChange={handleFilterGenreChange}>
+                    <option value="" disabled>Genre</option>
                     <option value="all">All</option>
                     {genres.map((genre) => (
                         <option key={genre.id} value={genre.name}>{genre.name}</option>
@@ -61,8 +59,8 @@ const Filters = () => {
                 </select>
             </div>
             <div className='filters'>
-                <label>Type:</label>
                 <select value={filterType} onChange={handleFilterTypeChange}>
+                    <option value="" disabled>Type</option>
                     <option value="all">All</option>
                     <option value="created">Created</option>
                     <option value="existing">Existing</option>
