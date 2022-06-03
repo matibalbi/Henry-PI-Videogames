@@ -5,6 +5,7 @@ export const GET_VIDEOGAME_DETAIL = 'GET_VIDEOGAME_DETAIL';
 export const GET_GENRES = 'GET_GENRES';
 export const SET_SEARCH = 'SET_SEARCH';
 export const SET_INPUT_SEARCH = 'SET_INPUT_SEARCH';
+export const SET_VALUE_SEARCHED = 'SET_VALUE_SEARCHED';
 export const SET_SORT_NAME = 'SET_SORT_NAME';
 export const SET_SORT_RATING = 'SET_SORT_RATING';
 export const SET_FILTER_GENRE = 'SET_FILTER_GENRE';
@@ -13,6 +14,8 @@ export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const SET_LOADING_VIDEOGAMES = 'SET_LOADING_VIDEOGAMES';
 export const SET_LOADING_GENRES = 'SET_LOADING_GENRES';
 export const SET_LOADING_SEARCH = 'SET_LOADING_SEARCH';
+export const SET_LOADING_DETAIL = 'SET_LOADING_DETAIL';
+export const RESET_DETAIL = 'RESET_DETAIL';
 
 export const getVideogames = () => {
     return (dispatch) => {
@@ -53,6 +56,12 @@ export const setSearch = (value) => {
 export const setInputSearch = (value) => {
     return (dispatch) => {
         dispatch({type: SET_INPUT_SEARCH, payload: value})
+    }
+}
+
+export const setValueSearched = (value) => {
+    return (dispatch) => {
+        dispatch({type: SET_VALUE_SEARCHED, payload: value})
     }
 }
 
@@ -101,5 +110,17 @@ export const setLoadingGenres = (value) => {
 export const setLoadingSearch = (value) => {
     return (dispatch) => {
         dispatch({type: SET_LOADING_SEARCH, payload: value})
+    }
+}
+
+export const setLoadingDetail = (value) => {
+    return (dispatch) => {
+        dispatch({type: SET_LOADING_DETAIL, payload: value})
+    }
+}
+
+export const resetDetail = () => {
+    return (dispatch) => {
+        dispatch({type: RESET_DETAIL, payload: {}})
     }
 }

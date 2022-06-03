@@ -1,0 +1,15 @@
+.containerNotFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imgSearchNotFound {
+    height: 100%;
+    width: 100%;
+}
+
+.imgFilterNotFound {
+    height: 250px;
+    width: 200px;
+}

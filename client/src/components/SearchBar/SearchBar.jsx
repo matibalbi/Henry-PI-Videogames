@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux"
-import {getVideogamesSearch, setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating, setLoadingSearch, setInputSearch} from "../../redux/actions";
+import {getVideogamesSearch, setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating, setLoadingSearch, setInputSearch, setValueSearched} from "../../redux/actions";
 import './SearchBar.css'
 
 const SearchBar = () => {
@@ -26,6 +26,7 @@ const SearchBar = () => {
     e.preventDefault();
     if (inputSearch) {
       dispatch(getVideogamesSearch(inputSearch))
+      dispatch(setValueSearched(inputSearch))
       dispatch(setLoadingSearch(true))
       if (sortName !== "") dispatch(setSortName(""))
       if (sortRating !== "") dispatch(setSortRating(""))
@@ -44,15 +45,12 @@ const SearchBar = () => {
           value={inputSearch}
           onChange={handleInputChange}
           className='inputSearch'
+          autoComplete="off"
         />
         <button type="button" className='eraseinputSearch' hidden={!inputSearch} onClick={handleEraseInput}>X</button>
       </div>
       <button type="submit" className='search'>Search</button>
     </form>
-  //   <form>
-  //   <input />
-  //   <button>Go</button>
-  // </form>
   );
 }
 

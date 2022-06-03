@@ -28,19 +28,22 @@ const getVideogameByID = async (req, res, next) => {
     else {
         try {
             let videogame = (await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)).data
-            videogame = {
-                id: videogame.id,
-                name: videogame.name,
-                image: videogame.background_image,
-                genres: videogame.genres.map(e => e.name),
-                description: videogame.description,
-                released: videogame.released,
-                rating: videogame.rating,
-                platforms: videogame.platforms.map(e => e.platform.name)
+            
+            if (videogame.id) {
+                videogame = {
+                    id: videogame.id,
+                    name: videogame.name,
+                    image: videogame.background_image,
+                    genres: videogame.genres.map(e => e.name),
+                    description: videogame.description,
+                    released: videogame.released,
+                    rating: videogame.rating,
+                    platforms: videogame.platforms.map(e => e.platform.name)
+                }
             }
             res.send(videogame)
         } catch (error) {
-            next(error)
+            res.send({error: "No videogame found with that ID"})
         }
     }
 }

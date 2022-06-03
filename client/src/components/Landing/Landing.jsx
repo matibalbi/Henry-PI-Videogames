@@ -3,8 +3,8 @@ import './Landing.css';
 
 const Landing = () => {
     return (
-        <div>   {/*className="backgroundImage"*/}
-            <Link to={`/home`}>
+        <div className="backgroundImage">
+            <Link to="/home">
                 <button className="center">Ingresar</button>
             </Link>
         </div>

@@ -1,4 +1,4 @@
-import {GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES_SEARCH, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT_NAME, SET_SORT_RATING, SET_LOADING_VIDEOGAMES, SET_LOADING_GENRES, SET_SEARCH, SET_LOADING_SEARCH, SET_INPUT_SEARCH} from "./actions"
+import {GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES_SEARCH, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT_NAME, SET_SORT_RATING, SET_LOADING_VIDEOGAMES, SET_LOADING_GENRES, SET_SEARCH, SET_LOADING_SEARCH, SET_INPUT_SEARCH, SET_VALUE_SEARCHED, SET_LOADING_DETAIL, RESET_DETAIL} from "./actions"
 import {sortNameAZ} from "../controllers/controllers";
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
     genres: [],
     search: false,
     inputSearch: "",
+    valueSearched: "",
     sortName: "",
     sortRating: "",
     filterGenre: "",
@@ -15,7 +16,8 @@ const initialState = {
     currentPage: 1,
     loadingVideogames: true,
     loadingGenres: true,
-    loadingSearch: false
+    loadingSearch: false,
+    loadingDetail: true,
 }
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -36,7 +38,8 @@ const reducer = (state = initialState, {type, payload}) => {
         case GET_VIDEOGAME_DETAIL:
             return {
                 ...state,
-                videogameDetail: payload
+                videogameDetail: payload,
+                loadingDetail: false
             }
         case GET_GENRES:
             payload.sort(sortNameAZ)
@@ -54,6 +57,11 @@ const reducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 inputSearch: payload
+            }
+        case SET_VALUE_SEARCHED:
+            return {
+                ...state,
+                valueSearched: payload
             }
         case SET_SORT_NAME:
             return {
@@ -94,6 +102,16 @@ const reducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 loadingSearch: payload
+            }
+        case SET_LOADING_DETAIL:
+            return {
+                ...state,
+                loadingDetail: payload
+            }
+        case RESET_DETAIL:
+            return {
+                ...state,
+                videogameDetail: payload
             }
         default:
             return state

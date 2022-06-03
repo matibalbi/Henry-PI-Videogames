@@ -1,0 +1,15 @@
+.containerIdNotFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.imgIdNotFound {
+    height: 400px;
+    width: 529px;
+    margin-bottom: 30px;
+    background-image: url("../../img/kirby-sad.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}

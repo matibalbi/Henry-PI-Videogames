@@ -1,13 +1,12 @@
 .containerFormSearch {
     display: flex;
-    justify-content: center;
+    justify-content:center;
     margin-left: 58px;
 }
 
 .containerInputSearch {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     border: 1px solid gray;
     width: 200px
 }
@@ -22,9 +21,11 @@
 }
 
 .eraseinputSearch {
+    align-self: flex-end;
     border: none;
     background: none;
     color: gray;
+    cursor: pointer;
 }
 
 .search {

@@ -1,0 +1,15 @@
+.containerError404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.imgError404 {
+    height: 500px;
+    width: 590px;
+    margin-bottom: 30px;
+    background-image: url("../../img/dead-link.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}

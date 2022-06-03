@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {useState} from 'react';
 import {useSelector} from "react-redux"
+import NavBar from "../NavBar/NavBar";
 
 const CreateVideogame = () => {
 
@@ -81,6 +82,7 @@ const CreateVideogame = () => {
 
   return (
       <div>
+         <NavBar />
          <div>Create Videogame</div>
          <form onSubmit={handleSubmit}>
             <div>

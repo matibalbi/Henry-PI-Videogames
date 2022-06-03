@@ -4,10 +4,12 @@ import {getGenres, getVideogames} from "../../redux/actions"
 import BackToAllGames from "../BackToAllGames/BackToAllGames";
 import Filters from "../Filters/Filters";
 import Loader from "../Loader/Loader";
+import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
 import Reload from "../Reload/Reload";
 import SearchBar from "../SearchBar/SearchBar";
 import VideogameCard from "../VideogameCard/VideogameCard";
+import VideogameNotFound from "../VideogameNotFound/VideogameNotFound";
 import './Home.css';
 
 const Home = () => {
@@ -15,6 +17,7 @@ const Home = () => {
     // Define global states from store
     const videogamesAll = useSelector(state => state.videogames)
     const videogamesSearch = useSelector(state => state.videogamesSearch)
+    const search = useSelector(state => state.search)
     const currentPage = useSelector(state => state.currentPage)
     const sortName = useSelector(state => state.sortName)
     const sortRating = useSelector(state => state.sortRating)
@@ -22,7 +25,6 @@ const Home = () => {
     const filterType = useSelector(state => state.filterType)
     const loadingVideogames = useSelector(state => state.loadingVideogames)
     const loadingGenres = useSelector(state => state.loadingGenres)
-    const search = useSelector(state => state.search)
     const loadingSearch = useSelector(state => state.loadingSearch)
 
     const dispatch = useDispatch()
@@ -76,6 +78,7 @@ const Home = () => {
 
     return (
         <div>
+            <NavBar />
             <div className='containerReloadSearch'>
                 <Reload />
                 <SearchBar />
@@ -84,6 +87,7 @@ const Home = () => {
             <Pagination gamesPerPage={gamesPerPage} totalGames={videogames.length}/>
             {search && <BackToAllGames/>}
             {loading && <Loader />}
+            {!loading && !currentGames.length && <VideogameNotFound />}
             {!loading &&
                 <div className='cards'>
                     {
