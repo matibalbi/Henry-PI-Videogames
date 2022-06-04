@@ -35,22 +35,22 @@ const Filters = () => {
 
     return (
         <div className='containerFil'>
-            <div className='filters'>
-                <select value={sortName} onChange={handleSortNameChange}>
+            <div className='filtersDiv'>
+                <select value={sortName} className='filtersSelect' onChange={handleSortNameChange}>
                     <option value="" disabled>Name</option>
                     <option value="nameAZ">A-Z</option>
                     <option value="nameZA">Z-A</option>
                 </select>
             </div>
-            <div className='filters'>
-                <select value={sortRating} onChange={handleSortRatingChange}>
+            <div className='filtersDiv'>
+                <select value={sortRating} className='filtersSelect' onChange={handleSortRatingChange}>
                     <option value="" disabled>Rating</option>
                     <option value="ratingBW">Best to worst</option>
                     <option value="ratingWB">Worst to best</option>
                 </select>
             </div>
-            <div className='filters'>
-                <select value={filterGenre} onChange={handleFilterGenreChange}>
+            <div className='filtersDiv'>
+                <select value={filterGenre} className='filtersSelect' onChange={handleFilterGenreChange}>
                     <option value="" disabled>Genre</option>
                     <option value="all">All</option>
                     {genres.map((genre) => (
@@ -58,8 +58,8 @@ const Filters = () => {
                     ))}
                 </select>
             </div>
-            <div className='filters'>
-                <select value={filterType} onChange={handleFilterTypeChange}>
+            <div className='filtersDiv'>
+                <select value={filterType} className='filtersSelect' onChange={handleFilterTypeChange}>
                     <option value="" disabled>Type</option>
                     <option value="all">All</option>
                     <option value="created">Created</option>

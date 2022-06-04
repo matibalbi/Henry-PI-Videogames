@@ -11,9 +11,12 @@ const VideogameCard = ({id, name, image, genres, rating}) => {
         <Link to={`/videogame/${id}`}>
             <h4>{name}</h4>
         </Link>
-        <img src={image} alt={name} />
-        <p>Genres: {genres.join(", ")}</p>
-        <p>Rating: {rating}</p>
+        <img src={image} alt={name} className="cardImg"/>
+        <div className="containerRating">
+          <span>Rating: {rating}</span>
+          <span className="star">&#11088;</span>
+        </div>
+        <div>Genres: {genres.join(", ")}</div>
     </div>
   );
 };

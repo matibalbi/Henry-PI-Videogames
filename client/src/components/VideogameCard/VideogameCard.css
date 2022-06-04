@@ -2,9 +2,24 @@
     height: 350px;
     width: 250px;
     margin: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-img {
+.cardImg {
     height: 200px;
     width: 250px;
+}
+
+.containerRating {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.star {
+    position: relative;
+    top: -1px;
 }

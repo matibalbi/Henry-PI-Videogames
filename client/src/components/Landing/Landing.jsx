@@ -5,7 +5,7 @@ const Landing = () => {
     return (
         <div className="backgroundImage">
             <Link to="/home">
-                <button className="center">Ingresar</button>
+                <button className="landingButton">Enter</button>
             </Link>
         </div>
     )

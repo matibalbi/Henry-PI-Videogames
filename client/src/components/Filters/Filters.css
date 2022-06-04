@@ -4,9 +4,25 @@
     margin: 15px 0px
 }
 
-.filters {
+.filtersDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px 20px
+    margin: 10px 20px;
+    /* box-shadow: inset 0 5px 10px rgba(0,0,0,.1), 0 2px 5px rgba(0,0,0,.5); */
+}
+
+.filtersSelect {
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    /* background: #ff2562; */
+    /* color: #fff; */
+    box-shadow: inset 0 5px 10px rgba(0,0,0,.1), 0 2px 5px rgba(0,0,0,.5);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.filtersSelect:focus {
+    outline: none;
 }
