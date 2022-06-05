@@ -7,7 +7,7 @@ const Error404 = () => {
         <div className='containerError404'>
             <div className='imgError404'></div>
             <Link to="/home">
-                <button type="button">RETURN TO HOME</button>
+                <button type="button" className='buttonError404'>RETURN TO HOME</button>
             </Link>
         </div>
     );

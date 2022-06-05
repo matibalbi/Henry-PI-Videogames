@@ -24,7 +24,7 @@ const BackToAllGames = () => {
 
   return (
     <div className='containerBack'>
-      <button type="button" onClick={handleClick}>Back to all videogames</button>
+      <button type="button" className='buttonBack' onClick={handleClick}>Back to all videogames</button>
     </div>
   );
 }

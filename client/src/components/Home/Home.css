@@ -1,12 +1,23 @@
+.containerHome {
+    background-image: url("../../img/landing.jpg");
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 10px 0px
+    margin: 25px 10px 5px;
+    /* background-color: rgba(255,37,98, 0.5); */
+                                        /* color w/opacity/see-through */
+    background-color: rgba(34,34,34, 0.5);
+    border-radius: 20px;
 }
 
-.containerReloadSearch {
+.containerReloadResetSearch {
     display: flex;
     justify-content: center;
-    margin: 20px 0px;
+    margin-bottom: 20px;
 }

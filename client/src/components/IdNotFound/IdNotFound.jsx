@@ -8,7 +8,7 @@ const IdNotFound = ({id}) => {
             <h3>{`Error 404: No video game found with ID "${id}"`}</h3>
             <div className='imgIdNotFound'></div>
             <Link to="/home">
-                <button type="button">RETURN TO HOME</button>
+                <button type="button" className='buttonIdNotFound'>RETURN TO HOME</button>
             </Link>
         </div>
     );

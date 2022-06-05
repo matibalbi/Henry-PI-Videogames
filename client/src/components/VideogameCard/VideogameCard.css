@@ -23,3 +23,18 @@
     position: relative;
     top: -1px;
 }
+
+.arrowRating {
+    color: #ff2562;
+}
+
+.arrowGenre {
+    position: relative;
+    top: 1px;
+    color: #ff2562;
+}
+
+.cardGenres {
+    display: block;
+    text-align: center;
+}

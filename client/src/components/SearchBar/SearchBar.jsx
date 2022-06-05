@@ -47,12 +47,10 @@ const SearchBar = () => {
           className='inputSearch'
           autoComplete="off"
         />
-        {/* <button type="button" className='eraseinputSearch' hidden={!inputSearch} onClick={handleEraseInput}>X</button> */}
         <button type="button" className={'eraseinputSearch' + (inputSearch ? '' : ' eraseDisable')} disabled={!inputSearch} onClick={handleEraseInput}>X</button>
       </div>
       <button type="submit" className='search'>Search</button>
     </form>
   );
 }
-//className={'numbers' + (currentPage === number ? ' active' : '')}
 export default SearchBar;

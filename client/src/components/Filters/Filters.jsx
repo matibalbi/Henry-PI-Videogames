@@ -36,21 +36,21 @@ const Filters = () => {
     return (
         <div className='containerFil'>
             <div className='filtersDiv'>
-                <select value={sortName} className='filtersSelect' onChange={handleSortNameChange}>
+                <select value={sortName} className={'filtersSelect' + (sortName ? ' filtersSelectActive' : '')} onChange={handleSortNameChange}>
                     <option value="" disabled>Name</option>
                     <option value="nameAZ">A-Z</option>
                     <option value="nameZA">Z-A</option>
                 </select>
             </div>
             <div className='filtersDiv'>
-                <select value={sortRating} className='filtersSelect' onChange={handleSortRatingChange}>
+                <select value={sortRating} className={'filtersSelect' + (sortRating ? ' filtersSelectActive' : '')} onChange={handleSortRatingChange}>
                     <option value="" disabled>Rating</option>
                     <option value="ratingBW">Best to worst</option>
                     <option value="ratingWB">Worst to best</option>
                 </select>
             </div>
             <div className='filtersDiv'>
-                <select value={filterGenre} className='filtersSelect' onChange={handleFilterGenreChange}>
+                <select value={filterGenre} className={'filtersSelect' + (filterGenre ? ' filtersSelectActive' : '')} onChange={handleFilterGenreChange}>
                     <option value="" disabled>Genre</option>
                     <option value="all">All</option>
                     {genres.map((genre) => (
@@ -59,7 +59,7 @@ const Filters = () => {
                 </select>
             </div>
             <div className='filtersDiv'>
-                <select value={filterType} className='filtersSelect' onChange={handleFilterTypeChange}>
+                <select value={filterType} className={'filtersSelect' + (filterType ? ' filtersSelectActive' : '')} onChange={handleFilterTypeChange}>
                     <option value="" disabled>Type</option>
                     <option value="all">All</option>
                     <option value="created">Created</option>

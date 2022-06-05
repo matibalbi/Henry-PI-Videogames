@@ -1,7 +1,7 @@
 import {useEffect} from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { getVideogameDetail, resetDetail, setLoadingDetail } from "../../redux/actions"
-import DefaultImage from '../../img/controller.png'
+import DefaultImage from '../../img/control.png'
 import './VideogameDetail.css'
 import Loader from "../Loader/Loader"
 import NavBar from "../NavBar/NavBar";

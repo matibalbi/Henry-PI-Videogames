@@ -1,6 +1,10 @@
 .containerPag {
     display: flex;
     justify-content: center;
+    /* margin: 15px 0px; */
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
 }
 
 .numbers {

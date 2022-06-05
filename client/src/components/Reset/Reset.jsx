@@ -1,8 +1,8 @@
 import {useDispatch, useSelector} from "react-redux"
-import {setLoadingGenres, setLoadingVideogames, setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating} from "../../redux/actions";
-import './Reload.css'
+import {setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating} from "../../redux/actions";
+import './Reset.css'
 
-const Reload = () => {
+const Reset = () => {
 
   const sortName = useSelector(state => state.sortName)
   const sortRating = useSelector(state => state.sortRating)
@@ -19,8 +19,6 @@ const Reload = () => {
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    dispatch(setLoadingVideogames(true))
-    dispatch(setLoadingGenres(true))
     if (sortName !== "") dispatch(setSortName(""))
     if (sortRating !== "") dispatch(setSortRating(""))
     if (filterGenre !== "") dispatch(setFilterGenre(""))
@@ -31,8 +29,8 @@ const Reload = () => {
   const disabled = search || loading
 
   return (
-    <button type="button" className={disabled ? 'reloadDisabled' : 'reloadActive'} disabled={disabled} onClick={handleClick}>Reload videogames</button>
+    <button type="button" className={disabled ? 'resetDisabled' : 'resetActive'} disabled={disabled} onClick={handleClick}>Reset filters</button>
   );
 }
 
-export default Reload;
+export default Reset;

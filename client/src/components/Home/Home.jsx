@@ -7,6 +7,7 @@ import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
 import Reload from "../Reload/Reload";
+import Reset from "../Reset/Reset";
 import SearchBar from "../SearchBar/SearchBar";
 import VideogameCard from "../VideogameCard/VideogameCard";
 import VideogameNotFound from "../VideogameNotFound/VideogameNotFound";
@@ -77,11 +78,13 @@ const Home = () => {
     }
 
     return (
-        <div>
+        <div className='containerHome'>
+            <br></br>
             <NavBar />
-            <div className='containerReloadSearch'>
+            <div className='containerReloadResetSearch'>
                 <Reload />
                 <SearchBar />
+                <Reset />
             </div>
             <Filters />
             <Pagination gamesPerPage={gamesPerPage} totalGames={videogames.length}/>
@@ -104,6 +107,7 @@ const Home = () => {
                     }
                 </div>
             }
+            <br></br>
         </div>
     )
 }

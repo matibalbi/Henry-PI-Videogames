@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import DefaultImage from '../../img/controller.png'
+import DefaultImage from '../../img/control.png'
 import './VideogameCard.css';
 
 const VideogameCard = ({id, name, image, genres, rating}) => {
@@ -9,14 +9,20 @@ const VideogameCard = ({id, name, image, genres, rating}) => {
   return (
     <div className="container">
         <Link to={`/videogame/${id}`}>
-            <h4>{name}</h4>
+          <h4>{name}</h4>
         </Link>
-        <img src={image} alt={name} className="cardImg"/>
+        <Link to={`/videogame/${id}`}>
+          <img src={image} alt={name} className="cardImg"/>
+        </Link>
         <div className="containerRating">
-          <span>Rating: {rating}</span>
+          <span>Rating <span className="arrowRating">&#129146;</span> {rating}</span>
           <span className="star">&#11088;</span>
         </div>
-        <div>Genres: {genres.join(", ")}</div>
+        <div className="cardGenres">
+          <span>Genres </span>
+          <span className="arrowGenre">&#129146;</span>
+          <span> {genres.join(" | ")}</span>
+        </div>
     </div>
   );
 };
