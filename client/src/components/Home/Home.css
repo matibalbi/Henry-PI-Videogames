@@ -5,14 +5,29 @@
     background-attachment: fixed;
 }
 
+.backImg100vh {
+    height: 100vh;
+}
+
+.homeSettingsContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.homeSettings {
+    width: 700px;
+    background-color: rgba(34,34,34, 0.7);
+    border-radius: 20px;
+    padding: 20px 0px
+}
+
 .cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 25px 10px 5px;
     /* background-color: rgba(255,37,98, 0.5); */
-                                        /* color w/opacity/see-through */
-    background-color: rgba(34,34,34, 0.5);
+    background-color: rgba(34,34,34, 0.7);
     border-radius: 20px;
 }
 

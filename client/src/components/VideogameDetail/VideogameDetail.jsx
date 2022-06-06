@@ -27,13 +27,14 @@ const VideogameDetail = (props) => {
     if (videogameDetail.error) return <IdNotFound id={id} />
     
     return (
-        <div>
+        <div className='containerDetail'>
+            <br></br>
             <NavBar />
-            {loadingDetail && <Loader />}
+            {loadingDetail && <div><br></br><br></br><br></br><Loader /></div>}
             {!loadingDetail &&
             <div>
                 <h3>{videogameDetail?.name}</h3>
-                <img src={videogameDetail.image || DefaultImage} alt={videogameDetail?.name} />
+                <img src={videogameDetail.image || DefaultImage} alt={videogameDetail?.name} className='imgDetail'/>
                 <h5>Genres: {videogameDetail.genres?.join(", ")}</h5>
                 <h5>Description: {videogameDetail?.description}</h5>
                 <h5>Released: {videogameDetail?.released}</h5>

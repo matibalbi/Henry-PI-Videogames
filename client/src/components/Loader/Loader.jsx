@@ -2,7 +2,9 @@ import './Loader.css';
 
 const Loader = () => {
     return (
-        <div className='loader pos-center'>
+        <div className='containerLoader'>
+            <div className='loader pos-center'>
+            </div>
         </div>
     )
 }

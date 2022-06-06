@@ -7,9 +7,9 @@ const VideogameCard = ({id, name, image, genres, rating}) => {
   if (!image) image = DefaultImage
 
   return (
-    <div className="container">
-        <Link to={`/videogame/${id}`}>
-          <h4>{name}</h4>
+    <div className="containerCard">
+        <Link to={`/videogame/${id}`} className="cardTitle">
+          {name}
         </Link>
         <Link to={`/videogame/${id}`}>
           <img src={image} alt={name} className="cardImg"/>
@@ -20,8 +20,20 @@ const VideogameCard = ({id, name, image, genres, rating}) => {
         </div>
         <div className="cardGenres">
           <span>Genres </span>
-          <span className="arrowGenre">&#129146;</span>
-          <span> {genres.join(" | ")}</span>
+          <span className="arrowGenre">&#129146; </span>
+          {
+            genres?.map((genre, i) => {
+              if (i === 0) {
+                return <span key={i}>{genre}</span>
+              }
+              return (
+                <span key={i}>
+                  <span className="arrowRating"> | </span>
+                  <span>{genre}</span>
+                </span>
+              )
+            })
+          }
         </div>
     </div>
   );

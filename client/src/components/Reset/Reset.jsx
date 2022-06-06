@@ -9,7 +9,6 @@ const Reset = () => {
   const filterGenre = useSelector(state => state.filterGenre)
   const filterType = useSelector(state => state.filterType)
   const currentPage = useSelector(state => state.currentPage)
-  const search = useSelector(state => state.search)
   const loadingVideogames = useSelector(state => state.loadingVideogames)
   const loadingGenres = useSelector(state => state.loadingGenres)
   const loadingSearch = useSelector(state => state.loadingSearch)
@@ -26,10 +25,8 @@ const Reset = () => {
     if (currentPage !== 1) dispatch(setCurrentPage(1))
   }
 
-  const disabled = search || loading
-
   return (
-    <button type="button" className={disabled ? 'resetDisabled' : 'resetActive'} disabled={disabled} onClick={handleClick}>Reset filters</button>
+    <button type="button" className={loading ? 'resetDisabled' : 'resetActive'} disabled={loading} onClick={handleClick}>Reset filters</button>
   );
 }
 

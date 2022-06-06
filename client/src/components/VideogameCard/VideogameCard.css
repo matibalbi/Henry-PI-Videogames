@@ -1,22 +1,37 @@
-.container {
-    height: 350px;
+.containerCard {
     width: 250px;
-    margin: 0px 20px;
+    margin: 20px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #222629;
+    /* background-color: rgba(255,37,98); */
+    border: 2px solid #fff;
+    border-radius: 20px;
+}
+
+.cardTitle {
+    margin: 10px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .cardImg {
     height: 200px;
     width: 250px;
+    border-radius: 20px;
 }
 
 .containerRating {
-    height: 20px;
     display: flex;
     align-items: center;
     margin: 10px;
+    color: #fff;
 }
 
 .star {
@@ -37,4 +52,7 @@
 .cardGenres {
     display: block;
     text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    padding: 0px 5px;
 }

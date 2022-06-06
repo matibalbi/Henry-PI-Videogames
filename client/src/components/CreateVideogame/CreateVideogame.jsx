@@ -82,6 +82,7 @@ const CreateVideogame = () => {
 
   return (
       <div>
+         <br></br>
          <NavBar />
          <div>Create Videogame</div>
          <form onSubmit={handleSubmit}>

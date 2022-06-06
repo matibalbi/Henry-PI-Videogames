@@ -78,17 +78,21 @@ const Home = () => {
     }
 
     return (
-        <div className='containerHome'>
+        <div className={'containerHome' + (loading || (!loading && !currentGames.length) ? ' backImg100vh' : '')}>
             <br></br>
             <NavBar />
-            <div className='containerReloadResetSearch'>
-                <Reload />
-                <SearchBar />
-                <Reset />
+            <div className='homeSettingsContainer'>
+                <div className='homeSettings'>
+                    <div className='containerReloadResetSearch'>
+                        <Reload />
+                        <SearchBar />
+                        <Reset />
+                    </div>
+                    <Filters />
+                    <Pagination gamesPerPage={gamesPerPage} totalGames={videogames.length}/>
+                    {search && <BackToAllGames/>}
+                </div>
             </div>
-            <Filters />
-            <Pagination gamesPerPage={gamesPerPage} totalGames={videogames.length}/>
-            {search && <BackToAllGames/>}
             {loading && <Loader />}
             {!loading && !currentGames.length && <VideogameNotFound />}
             {!loading &&

@@ -1,4 +1,17 @@
-img {
+.containerDetail {
+    background-image: url("../../img/landing.jpg");
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.loaderDetail {
+    position: relative;
+    top: 200px;
+}
+
+.imgDetail {
     max-width: 300px;
     max-height: 300px;
 }
