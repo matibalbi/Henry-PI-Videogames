@@ -1,4 +1,4 @@
-.containerDetail {
+.backgroundDetail {
     background-image: url("../../img/landing.jpg");
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
@@ -6,12 +6,78 @@
     height: 100vh;
 }
 
-.loaderDetail {
-    position: relative;
-    top: 200px;
+.containerDetail {
+    background-color: rgba(34,34,34, 0.9);
+    border-radius: 20px;
+    margin: 0px 10px;
+    padding-bottom: 20px;
+}
+
+.containerDetailTitle {
+    display: flex;
+    justify-content: center;
+}
+
+.titleDetail {
+    color: #fff;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.containerDetailBody {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .imgDetail {
-    max-width: 300px;
-    max-height: 300px;
+    width: 700px;
+    max-height: 500px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+}
+
+.containerDetailInfo {
+    width: 700px;
+    background-color: #222629;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    padding: 10px 10px 0px 10px;
+}
+
+.fontBodyDetail {
+    color: #fff;
+    font-size: 1.0em;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.fontWeightDetail {
+    font-weight: 500;
+}
+
+.ratingDetail {
+    margin-bottom: 20px;
+}
+
+.releasedDetail {
+    margin: 20px 0px;
+}
+
+.genresDetail {
+    margin: 20px 0px;
+}
+
+.pltaformsDetail {
+    margin: 20px 0px;
+}
+
+.descriptionDetail {
+    width: 700px;
+    max-height: 250px;
+    overflow: auto;
+    font-weight: 500;
+    margin: 10px 0px;
 }

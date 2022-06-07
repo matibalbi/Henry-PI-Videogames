@@ -26,20 +26,72 @@ const VideogameDetail = (props) => {
 
     if (videogameDetail.error) return <IdNotFound id={id} />
     
+    const modifyDescription = () => {
+        return {__html: videogameDetail?.description};
+      }
+
     return (
-        <div className='containerDetail'>
+        <div className='backgroundDetail'>
             <br></br>
             <NavBar />
             {loadingDetail && <div><br></br><br></br><br></br><Loader /></div>}
             {!loadingDetail &&
-            <div>
-                <h3>{videogameDetail?.name}</h3>
-                <img src={videogameDetail.image || DefaultImage} alt={videogameDetail?.name} className='imgDetail'/>
-                <h5>Genres: {videogameDetail.genres?.join(", ")}</h5>
-                <h5>Description: {videogameDetail?.description}</h5>
-                <h5>Released: {videogameDetail?.released}</h5>
-                <h5>Rating: {videogameDetail?.rating}</h5>
-                <h5>Platforms: {videogameDetail.platforms?.join(", ")}</h5>
+            <div className='containerDetail'>
+                <div className='containerDetailTitle'>
+                    <h3 className='titleDetail'>{videogameDetail?.name}</h3>
+                </div>
+                <div className='containerDetailBody'>
+                    <div>
+                        <img src={videogameDetail.image || DefaultImage} alt={videogameDetail?.name} className='imgDetail'/>
+                    </div>
+                    <div className='containerDetailInfo'>
+                        <div className="ratingDetail fontBodyDetail">
+                            <span>Rating <span className="arrowRating">&#129146;</span><span className="fontWeightDetail"> {videogameDetail?.rating}</span></span>
+                            <span className="star">&#11088;</span>
+                        </div>
+                        <div className='releasedDetail fontBodyDetail'>
+                            <span>Released <span className="arrowRating">&#129146;</span><span className="fontWeightDetail"> {videogameDetail?.released}</span></span>
+                        </div>
+                        <div className="genresDetail fontBodyDetail">
+                            <span>Genres </span>
+                            <span className="arrowGenre">&#129146; </span>
+                            {
+                                videogameDetail.genres?.map((genre, i) => {
+                                    if (i === 0) {
+                                        return <span key={i} className="fontWeightDetail">{genre}</span>
+                                    }
+                                    return (
+                                        <span key={i}>
+                                            <span className="arrowRating"> | </span>
+                                            <span className="fontWeightDetail">{genre}</span>
+                                        </span>
+                                    )
+                                })
+                            }
+                        </div>
+                        <div className="pltaformsDetail fontBodyDetail">
+                            <span>Platforms </span>
+                            <span className="arrowGenre">&#129146; </span>
+                            {
+                                videogameDetail.platforms?.map((platform, i) => {
+                                    if (i === 0) {
+                                        return <span key={i} className="fontWeightDetail">{platform}</span>
+                                    }
+                                    return (
+                                        <span key={i}>
+                                            <span className="arrowRating"> | </span>
+                                            <span className="fontWeightDetail">{platform}</span>
+                                        </span>
+                                    )
+                                })
+                            }
+                        </div>
+                        <div className='fontBodyDetail'>
+                            <span>Description <span className="arrowRating">&#129147;</span></span>
+                        </div>
+                        <div dangerouslySetInnerHTML={modifyDescription()} className='descriptionDetail fontBodyDetail'/>
+                    </div>
+                </div>
             </div>
             }
         </div>

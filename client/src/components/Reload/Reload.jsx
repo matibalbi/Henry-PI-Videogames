@@ -31,7 +31,7 @@ const Reload = () => {
   const disabled = search || loading
 
   return (
-    <button type="button" className={disabled ? 'reloadDisabled' : 'reloadActive'} disabled={disabled} onClick={handleClick}>Reload videogames</button>
+    <button type="button" disabled={disabled} className={disabled ? 'reloadDisabled' : 'reloadActive'} onClick={handleClick}>Reload video games</button>
   );
 }
 

@@ -5,7 +5,6 @@
     flex-direction: column;
     align-items: center;
     background-color: #222629;
-    /* background-color: rgba(255,37,98); */
     border: 2px solid #fff;
     border-radius: 20px;
 }
@@ -28,8 +27,6 @@
 }
 
 .containerRating {
-    display: flex;
-    align-items: center;
     margin: 10px;
     color: #fff;
 }
@@ -55,4 +52,8 @@
     color: #fff;
     margin-bottom: 20px;
     padding: 0px 5px;
+}
+
+.fontBoldCard {
+    font-weight: 500;
 }

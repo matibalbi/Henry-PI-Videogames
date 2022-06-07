@@ -16,7 +16,7 @@
 
 .homeSettings {
     width: 700px;
-    background-color: rgba(34,34,34, 0.7);
+    background-color: rgba(34,34,34, 0.9);
     border-radius: 20px;
     padding: 20px 0px
 }
@@ -26,7 +26,6 @@
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 25px 10px 5px;
-    /* background-color: rgba(255,37,98, 0.5); */
     background-color: rgba(34,34,34, 0.7);
     border-radius: 20px;
 }

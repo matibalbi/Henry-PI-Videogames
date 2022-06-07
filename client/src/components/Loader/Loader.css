@@ -1,23 +1,11 @@
 .containerLoader {
     display: flex;
     justify-content: center;
-    margin-top: 150px;
 }
-  
-.loader {
-    border: 10px solid #f3f3f3;
-    border-top: 10px solid #ff2562;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    animation: spin 1s linear infinite;
-}
-  
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+
+.loader2 {
+    width: 400px;
+    height: 400px;
+    margin-top: 40px;
+    border-radius: 20px;
 }

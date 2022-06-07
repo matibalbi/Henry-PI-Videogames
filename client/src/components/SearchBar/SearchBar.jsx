@@ -41,13 +41,13 @@ const SearchBar = () => {
       <div className='containerInputSearch'>
         <input
           id="inputSearch"
-          placeholder="Search videogame..."
+          placeholder="Search video game..."
           value={inputSearch}
           onChange={handleInputChange}
           className='inputSearch'
           autoComplete="off"
         />
-        <button type="button" className={'eraseinputSearch' + (inputSearch ? '' : ' eraseDisable')} disabled={!inputSearch} onClick={handleEraseInput}>X</button>
+        <button type="button" disabled={!inputSearch} className={'eraseinputSearch' + (inputSearch ? '' : ' eraseDisable')} onClick={handleEraseInput}>X</button>
       </div>
       <button type="submit" className='search'>Search</button>
     </form>

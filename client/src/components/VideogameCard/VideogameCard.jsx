@@ -15,11 +15,13 @@ const VideogameCard = ({id, name, image, genres, rating}) => {
           <img src={image} alt={name} className="cardImg"/>
         </Link>
         <div className="containerRating">
-          <span>Rating <span className="arrowRating">&#129146;</span> {rating}</span>
+          <span className="fontBoldCard">Rating </span>
+          <span className="arrowRating">&#129146;</span>
+          <span> {rating}</span>
           <span className="star">&#11088;</span>
         </div>
         <div className="cardGenres">
-          <span>Genres </span>
+          <span className="fontBoldCard">Genres </span>
           <span className="arrowGenre">&#129146; </span>
           {
             genres?.map((genre, i) => {
