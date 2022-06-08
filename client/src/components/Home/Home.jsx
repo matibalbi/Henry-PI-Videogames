@@ -69,7 +69,7 @@ const Home = () => {
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGames = videogames.slice(indexOfFirstGame, indexOfLastGame)
 
-    // Define loadings
+    // Define loading
     const loading = loadingVideogames || loadingGenres || loadingSearch
 
     if (loadingVideogames && loadingGenres) {
@@ -78,7 +78,7 @@ const Home = () => {
     }
 
     return (
-        <div className={'containerHome' + (loading || (!loading && !currentGames.length) ? ' backImg100vh' : '')}>
+        <div className={'containerHome' + (loading || currentGames.length <= 5 ? ' backImg100vh' : '')}>
             <br></br>
             <NavBar />
             <div className='homeSettingsContainer'>
@@ -95,10 +95,10 @@ const Home = () => {
             </div>
             {loading && <Loader />}
             {!loading && !currentGames.length && <VideogameNotFound />}
-            {!loading &&
+            {!loading && currentGames.length &&
                 <div className='cards'>
                     {
-                        currentGames?.map(vg =>
+                        currentGames.map(vg =>
                             <VideogameCard 
                             key={vg.id}
                             id={vg.id}

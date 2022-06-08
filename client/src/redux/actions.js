@@ -5,7 +5,6 @@ export const GET_VIDEOGAME_DETAIL = 'GET_VIDEOGAME_DETAIL';
 export const GET_GENRES = 'GET_GENRES';
 export const SET_SEARCH = 'SET_SEARCH';
 export const SET_INPUT_SEARCH = 'SET_INPUT_SEARCH';
-export const SET_VALUE_SEARCHED = 'SET_VALUE_SEARCHED';
 export const SET_SORT_NAME = 'SET_SORT_NAME';
 export const SET_SORT_RATING = 'SET_SORT_RATING';
 export const SET_FILTER_GENRE = 'SET_FILTER_GENRE';
@@ -56,12 +55,6 @@ export const setSearch = (value) => {
 export const setInputSearch = (value) => {
     return (dispatch) => {
         dispatch({type: SET_INPUT_SEARCH, payload: value})
-    }
-}
-
-export const setValueSearched = (value) => {
-    return (dispatch) => {
-        dispatch({type: SET_VALUE_SEARCHED, payload: value})
     }
 }
 

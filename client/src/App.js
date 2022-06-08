@@ -12,9 +12,9 @@ function App() {
     <React.Fragment>
       <Switch>
         <Route exact path="/" component={Landing} />
-        <Route path="/home" component={Home} />
-        <Route path="/videogame/:id" component={VideogameDetail} />
-        <Route path="/createVideogame" component={CreateVideogame} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/videogame/:id" component={VideogameDetail} />
+        <Route exact path="/createVideogame" component={CreateVideogame} />
         <Route path="*" component={Error404} />
       </Switch>
     </React.Fragment>

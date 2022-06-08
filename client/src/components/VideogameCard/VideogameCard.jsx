@@ -1,30 +1,30 @@
-import { Link } from 'react-router-dom';
-import DefaultImage from '../../img/control.png'
+import {Link} from 'react-router-dom';
+import DefaultImage from '../../img/controller.jpg'
 import './VideogameCard.css';
 
 const VideogameCard = ({id, name, image, genres, rating}) => {
-  
-  if (!image) image = DefaultImage
 
   return (
     <div className="containerCard">
-        <Link to={`/videogame/${id}`} className="cardTitle">
-          {name}
-        </Link>
+        <div className="containerTitleCard">
+          <Link to={`/videogame/${id}`} className="linksCard">
+            <div className="cardTitle">{name}</div>
+          </Link>
+        </div>
         <Link to={`/videogame/${id}`}>
-          <img src={image} alt={name} className="cardImg"/>
+          <img src={image || DefaultImage} alt={name} className="cardImg"/>
         </Link>
         <div className="containerRating">
           <span className="fontBoldCard">Rating </span>
           <span className="arrowRating">&#129146;</span>
-          <span> {rating}</span>
-          <span className="star">&#11088;</span>
+          {!!rating && <span><span> {rating}</span><span className="star">&#11088;</span></span>}
+          {!rating && <span className="orangeHome"> (not rated)</span>}
         </div>
         <div className="cardGenres">
           <span className="fontBoldCard">Genres </span>
           <span className="arrowGenre">&#129146; </span>
-          {
-            genres?.map((genre, i) => {
+          {!!genres.length && 
+            genres.map((genre, i) => {
               if (i === 0) {
                 return <span key={i}>{genre}</span>
               }
@@ -36,6 +36,7 @@ const VideogameCard = ({id, name, image, genres, rating}) => {
               )
             })
           }
+          {!genres.length && <span className="orangeHome">(no genres assigned)</span>}
         </div>
     </div>
   );

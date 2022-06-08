@@ -1,7 +1,7 @@
 import {useEffect} from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { getVideogameDetail, resetDetail, setLoadingDetail } from "../../redux/actions"
-import DefaultImage from '../../img/control.png'
+import DefaultImage from '../../img/controller.jpg'
 import './VideogameDetail.css'
 import Loader from "../Loader/Loader"
 import NavBar from "../NavBar/NavBar";
@@ -42,12 +42,14 @@ const VideogameDetail = (props) => {
                 </div>
                 <div className='containerDetailBody'>
                     <div>
-                        <img src={videogameDetail.image || DefaultImage} alt={videogameDetail?.name} className='imgDetail'/>
+                        <img src={videogameDetail?.image || DefaultImage} alt={videogameDetail?.name} className='imgDetail'/>
                     </div>
                     <div className='containerDetailInfo'>
                         <div className="ratingDetail fontBodyDetail">
-                            <span>Rating <span className="arrowRating">&#129146;</span><span className="fontWeightDetail"> {videogameDetail?.rating}</span></span>
-                            <span className="star">&#11088;</span>
+                            <span>Rating </span>
+                            <span className="arrowRating">&#129146;</span>
+                            {!!videogameDetail.rating && <span><span className="fontWeightDetail"> {videogameDetail.rating}</span><span className="star">&#11088;</span></span>}
+                            {!videogameDetail.rating && <span className="orangeDetail"> (not rated)</span>}
                         </div>
                         <div className='releasedDetail fontBodyDetail'>
                             <span>Released <span className="arrowRating">&#129146;</span><span className="fontWeightDetail"> {videogameDetail?.released}</span></span>
@@ -55,8 +57,8 @@ const VideogameDetail = (props) => {
                         <div className="genresDetail fontBodyDetail">
                             <span>Genres </span>
                             <span className="arrowGenre">&#129146; </span>
-                            {
-                                videogameDetail.genres?.map((genre, i) => {
+                            {!!videogameDetail.genres && 
+                                videogameDetail.genres.map((genre, i) => {
                                     if (i === 0) {
                                         return <span key={i} className="fontWeightDetail">{genre}</span>
                                     }
@@ -68,6 +70,7 @@ const VideogameDetail = (props) => {
                                     )
                                 })
                             }
+                            {!videogameDetail.genres.length && <span className="orangeDetail">(no genres assigned)</span>}
                         </div>
                         <div className="pltaformsDetail fontBodyDetail">
                             <span>Platforms </span>

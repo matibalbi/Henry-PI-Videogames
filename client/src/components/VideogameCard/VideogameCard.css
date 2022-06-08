@@ -1,5 +1,5 @@
 .containerCard {
-    width: 250px;
+    width: 255px;
     margin: 20px 20px;
     display: flex;
     flex-direction: column;
@@ -7,22 +7,36 @@
     background-color: #222629;
     border: 2px solid #fff;
     border-radius: 20px;
+    transition: all .2s ease-in-out;
+}
+
+.containerCard:hover { 
+    transform: scale(1.1);
+}
+
+.linksCard {
+    text-decoration: none;
+}
+
+.containerTitleCard {
+    display: flex;
+    align-items: center;
+    height: 39px;
+    margin: 10px;
 }
 
 .cardTitle {
-    margin: 10px;
     display: block;
     text-align: center;
-    text-decoration: none;
     color: #fff;
-    font-size: 0.9em;
+    font-size: 1.0em;
     text-transform: uppercase;
     font-weight: 700;
 }
 
 .cardImg {
     height: 200px;
-    width: 250px;
+    width: 255px;
     border-radius: 20px;
 }
 
@@ -56,4 +70,8 @@
 
 .fontBoldCard {
     font-weight: 500;
+}
+
+.orangeHome {
+    color: orange;
 }
