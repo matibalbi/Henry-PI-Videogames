@@ -1,18 +1,27 @@
 .containerNotFound {
     display: flex;
     justify-content: center;
+    background-color: rgba(34,34,34, 0.7);
+    border-radius: 20px;
+    padding: 20px 0px;
+}
+
+.marginShortNotFound {
+    margin: 25px 10px 0px
+}
+
+.marginLongNotFound {
+    margin: 80px 10px 0px
 }
 
 .imgSearchNotFound {
     width: 576px;
     height: 324px;
-    margin-top: 50px;
     border-radius: 20px;
 }
 
 .imgFilterNotFound {
     width: 576px;
     height: 324px;
-    margin-top: 50px;
     border-radius: 20px;
 }

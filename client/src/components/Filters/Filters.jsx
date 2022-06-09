@@ -15,11 +15,13 @@ const Filters = () => {
             
     const handleSortNameChange = e => {
         dispatch(setSortName(e.target.value))
+        if (currentPage !== 1) dispatch(setCurrentPage(1))
         if (sortRating !== "") dispatch(setSortRating(""))
     }
 
     const handleSortRatingChange = e => {
         dispatch(setSortRating(e.target.value))
+        if (currentPage !== 1) dispatch(setCurrentPage(1))
         if (sortName !== "") dispatch(setSortName(""))
     }
 

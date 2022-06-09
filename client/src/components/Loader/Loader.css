@@ -1,11 +1,14 @@
 .containerLoader {
     display: flex;
     justify-content: center;
+    background-color: rgba(34,34,34, 0.7);
+    border-radius: 20px;
+    padding: 20px 0px;
+    margin: 25px 10px 0px
 }
 
-.loader2 {
+.loader {
     width: 400px;
     height: 400px;
-    margin-top: 40px;
     border-radius: 20px;
 }

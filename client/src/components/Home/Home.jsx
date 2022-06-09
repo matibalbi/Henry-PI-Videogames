@@ -78,7 +78,7 @@ const Home = () => {
     }
 
     return (
-        <div className={'containerHome' + (loading || currentGames.length <= 5 ? ' backImg100vh' : '')}>
+        <div className={'containerHome' + (!currentGames.length ? ' backImg100vh' : '')}>
             <br></br>
             <NavBar />
             <div className='homeSettingsContainer'>
@@ -95,7 +95,7 @@ const Home = () => {
             </div>
             {loading && <Loader />}
             {!loading && !currentGames.length && <VideogameNotFound />}
-            {!loading && currentGames.length &&
+            {!loading && !!currentGames.length &&
                 <div className='cards'>
                     {
                         currentGames.map(vg =>

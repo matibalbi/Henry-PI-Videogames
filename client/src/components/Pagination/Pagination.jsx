@@ -28,7 +28,7 @@ const Pagination = ({gamesPerPage, totalGames}) => {
 
     return (
         <ul className='containerPag'>
-            {pageNumbers.length > 1 && <li className='numbers prev' onClick={handleClickPrevious}><span className='centerArrow'>{"<"}</span></li>}
+            {pageNumbers.length > 1 && <li className='numbers prev' onClick={handleClickPrevious}><span>{"<"}</span></li>}
             {
                 pageNumbers.map(number =>
                     <li key={number} className={'numbers' + (currentPage === number ? ' active' : '')} onClick={() => handleClickPage(number)}>
@@ -36,7 +36,7 @@ const Pagination = ({gamesPerPage, totalGames}) => {
                     </li>
                 )
             }
-            {pageNumbers.length > 1 && <li className='numbers next' onClick={handleClickNext}><span className='centerArrow'>{">"}</span></li>}
+            {pageNumbers.length > 1 && <li className='numbers next' onClick={handleClickNext}><span>{">"}</span></li>}
         </ul>
     )
 }
