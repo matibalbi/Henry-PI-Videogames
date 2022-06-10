@@ -1,4 +1,4 @@
-import {GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES_SEARCH, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT_NAME, SET_SORT_RATING, SET_LOADING_VIDEOGAMES, SET_LOADING_GENRES, SET_SEARCH, SET_LOADING_SEARCH, SET_INPUT_SEARCH, SET_LOADING_DETAIL, SET_VIDEOGAME_UPDATE, RESET_DETAIL, RESET_UPDATE} from "./actions"
+import {GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES_SEARCH, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT_NAME, SET_SORT_RATING, SET_LOADING_VIDEOGAMES, SET_LOADING_GENRES, SET_SEARCH, SET_LOADING_SEARCH, SET_INPUT_SEARCH, SET_LOADING_DETAIL, SET_VIDEOGAME_UPDATE, RESET_DETAIL, RESET_UPDATE, GET_VIDEOGAMES_FROM_DB, GET_VIDEOGAMES_SEARCH_FROM_DB, GET_VIDEOGAMES_FROM_API, GET_VIDEOGAMES_SEARCH_FROM_API} from "./actions"
 import {sortNameAZ} from "../controllers/controllers";
 
 const initialState = {
@@ -18,6 +18,15 @@ const initialState = {
     loadingGenres: true,
     loadingSearch: false,
     loadingDetail: true,
+
+    videogamesDB: [],
+    videogamesAPI: [],
+    searchDB: false,
+    searchAPI: false,
+    loadingVideogamesDB: true,
+    loadingVideogamesAPI: true,
+    loadingSearchDB: false,
+    loadingSearchAPI: false,
 }
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -117,6 +126,35 @@ const reducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 videogameUpdate: payload
+            }
+
+        case GET_VIDEOGAMES_FROM_DB:
+            return {
+                ...state,
+                videogamesDB: payload,
+                videogames: [...payload,...state.videogamesAPI],
+                loadingVideogamesDB: false
+            }
+        case GET_VIDEOGAMES_FROM_API:
+            return {
+                ...state,
+                videogamesAPI: payload,
+                videogames: [...state.videogamesDB,...payload],
+                loadingVideogamesAPI: false
+            }
+        case GET_VIDEOGAMES_SEARCH_FROM_DB:
+            return {
+                ...state,
+                videogamesSearch: payload,
+                searchDB: true,
+                loadingSearchDB: false
+            }
+        case GET_VIDEOGAMES_SEARCH_FROM_API:
+            return {
+                ...state,
+                videogamesSearch: payload,
+                searchAPI: true,
+                loadingSearchAPI: false
             }
         default:
             return state

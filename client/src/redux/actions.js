@@ -18,6 +18,11 @@ export const SET_LOADING_DETAIL = 'SET_LOADING_DETAIL';
 export const RESET_DETAIL = 'RESET_DETAIL';
 export const RESET_UPDATE = 'RESET_UPDATE';
 
+export const GET_VIDEOGAMES_FROM_DB = 'GET_VIDEOGAMES_FROM_DB';
+export const GET_VIDEOGAMES_FROM_API = 'GET_VIDEOGAMES_FROM_API';
+export const GET_VIDEOGAMES_SEARCH_FROM_DB = 'GET_VIDEOGAMES_SEARCH_FROM_DB';
+export const GET_VIDEOGAMES_SEARCH_FROM_API = 'GET_VIDEOGAMES_SEARCH_FROM_API';
+
 export const getVideogames = () => {
     return (dispatch) => {
         return axios("http://localhost:3001/videogames")
@@ -48,19 +53,19 @@ export const getGenres = () => {
     }
 }
 
-export const setVideogameUpdate = (value) => {
+export const setVideogameUpdate = value => {
     return (dispatch) => {
         dispatch({type: SET_VIDEOGAME_UPDATE, payload: value})
     }
 }
 
-export const setSearch = (value) => {
+export const setSearch = value => {
     return (dispatch) => {
         dispatch({type: SET_SEARCH, payload: value})
     }
 }
 
-export const setInputSearch = (value) => {
+export const setInputSearch = value => {
     return (dispatch) => {
         dispatch({type: SET_INPUT_SEARCH, payload: value})
     }
@@ -96,25 +101,25 @@ export const setCurrentPage = number => {
     }
 }
 
-export const setLoadingVideogames = (value) => {
+export const setLoadingVideogames = value => {
     return (dispatch) => {
         dispatch({type: SET_LOADING_VIDEOGAMES, payload: value})
     }
 }
 
-export const setLoadingGenres = (value) => {
+export const setLoadingGenres = value => {
     return (dispatch) => {
         dispatch({type: SET_LOADING_GENRES, payload: value})
     }
 }
 
-export const setLoadingSearch = (value) => {
+export const setLoadingSearch = value => {
     return (dispatch) => {
         dispatch({type: SET_LOADING_SEARCH, payload: value})
     }
 }
 
-export const setLoadingDetail = (value) => {
+export const setLoadingDetail = value => {
     return (dispatch) => {
         dispatch({type: SET_LOADING_DETAIL, payload: value})
     }
@@ -129,5 +134,33 @@ export const resetDetail = () => {
 export const resetUpdate = () => {
     return (dispatch) => {
         dispatch({type: RESET_UPDATE, payload: {}})
+    }
+}
+
+export const getVideogamesFromDB = () => {
+    return (dispatch) => {
+        return axios("http://localhost:3001/videogames/db")
+        .then(res => dispatch({type: GET_VIDEOGAMES_FROM_DB, payload: res.data}))
+    }
+}
+
+export const getVideogamesFromAPI = () => {
+    return (dispatch) => {
+        return axios("http://localhost:3001/videogames/api")
+        .then(res => dispatch({type: GET_VIDEOGAMES_FROM_API, payload: res.data}))
+    }
+}
+
+export const getVideogamesSearchFromDB = videogame => {
+    return (dispatch) => {
+        return axios(`http://localhost:3001/videogames/db?game=${videogame}`)
+        .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH_FROM_DB, payload: res.data}))
+    }
+}
+
+export const getVideogamesSearchFromAPI = videogame => {
+    return (dispatch) => {
+        return axios(`http://localhost:3001/videogames/api?game=${videogame}`)
+        .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH_FROM_API, payload: res.data}))
     }
 }

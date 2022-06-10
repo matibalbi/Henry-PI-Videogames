@@ -20,7 +20,7 @@ const CreateVideogame = () => {
       released: '',
       rating: '',
       genres: [],
-      platforms: []
+      platforms: [],
    });
 
    const [errors, setErrors] = useState({});

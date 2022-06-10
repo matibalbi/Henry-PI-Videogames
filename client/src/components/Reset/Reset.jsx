@@ -10,12 +10,6 @@ const Reset = () => {
   const filterType = useSelector(state => state.filterType)
   const currentPage = useSelector(state => state.currentPage)
 
-  // const loadingVideogames = useSelector(state => state.loadingVideogames)
-  // const loadingGenres = useSelector(state => state.loadingGenres)
-  // const loadingSearch = useSelector(state => state.loadingSearch)
-
-  // const loading = loadingVideogames || loadingGenres || loadingSearch
-
   const dispatch = useDispatch()
 
   const handleClick = () => {
@@ -30,7 +24,5 @@ const Reset = () => {
     <button type="button" className={'resetActive'} onClick={handleClick}>Reset filters</button>
   );
 }
-
-// disabled={loading} className={loading ? 'resetDisabled' : 'resetActive'}
 
 export default Reset;

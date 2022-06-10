@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux"
 import {sortNameAZ, sortNameZA, sortRatingBW, sortRatingWB} from "../../controllers/controllers";
-import {getGenres, getVideogames} from "../../redux/actions"
+import {getGenres, getVideogames, getVideogamesFromAPI, getVideogamesFromDB} from "../../redux/actions"
 import BackToAllGames from "../BackToAllGames/BackToAllGames";
 import Filters from "../Filters/Filters";
 import Loader from "../Loader/Loader";
@@ -29,9 +29,20 @@ const Home = () => {
     const loadingGenres = useSelector(state => state.loadingGenres)
     const loadingSearch = useSelector(state => state.loadingSearch)
 
+    const loadingVideogamesDB = useSelector(state => state.loadingVideogamesDB)
+    const loadingVideogamesAPI = useSelector(state => state.loadingVideogamesAPI)
+    const loadingSearchDB = useSelector(state => state.loadingSearchDB)
+    const loadingSearchAPI = useSelector(state => state.loadingSearchAPI)
+
     const dispatch = useDispatch()
 
-    let videogames = search ? videogamesSearch.slice() : videogamesAll.slice()
+    // Define loading
+    const loading = loadingVideogamesDB || loadingVideogamesAPI || loadingGenres || loadingSearchDB || loadingSearchAPI
+    // const loading = loadingVideogames || loadingGenres || loadingSearch
+
+    let videogames = []
+    // ELIMINAR DEL REDUCER VIDEOGAMES ALL Y DEFINIR videogames UNIENDO videogamesDB y videogamesAPI
+    if (!loading) videogames = search ? videogamesSearch.slice() : videogamesAll.slice()
 
     // Sort videogames
     switch (sortName) {
@@ -71,14 +82,12 @@ const Home = () => {
     const currentGames = videogames.slice(indexOfFirstGame, indexOfLastGame)
 
     // Get videogames and genres at first rendering
-
     if (!videogamesAll.length && !genres.length) {
-        dispatch(getVideogames())
+        dispatch(getVideogamesFromAPI())
+        dispatch(getVideogamesFromDB())
+        // dispatch(getVideogames())
         dispatch(getGenres())
     }
-
-    // Define loading
-    const loading = loadingVideogames || loadingGenres || loadingSearch
 
     return (
         <div className='containerHome'>

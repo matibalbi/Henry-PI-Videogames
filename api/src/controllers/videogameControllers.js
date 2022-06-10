@@ -1,4 +1,5 @@
 const axios = require("axios");
+// const fetch = require("node-fetch");
 const {Videogame, Genre} = require("../db");
 require('dotenv').config();
 const {API_KEY} = process.env;
@@ -28,7 +29,6 @@ const getVideogameByID = async (req, res, next) => {
     else {
         try {
             let videogame = (await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)).data
-            
             if (videogame.id) {
                 videogame = {
                     id: videogame.id,
@@ -80,9 +80,7 @@ const putVideogame = async (req, res, next) => {
 
     try {
         const videogame = await Videogame.findByPk(id)
-        const update = await videogame.update(
-            {name, image, description, released, rating, platforms},
-            )
+        const update = await videogame.update({name, image, description, released, rating, platforms})
         const videogameGenres = await videogame.getGenres()
         await videogame.removeGenres(videogameGenres)
         let arrPromises = genres.map(e => (
