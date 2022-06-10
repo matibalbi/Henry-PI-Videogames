@@ -18,6 +18,7 @@ const Home = () => {
     // Define global states from store
     const videogamesAll = useSelector(state => state.videogames)
     const videogamesSearch = useSelector(state => state.videogamesSearch)
+    const genres = useSelector(state => state.genres)
     const search = useSelector(state => state.search)
     const currentPage = useSelector(state => state.currentPage)
     const sortName = useSelector(state => state.sortName)
@@ -69,16 +70,18 @@ const Home = () => {
     const indexOfFirstGame = indexOfLastGame - gamesPerPage
     const currentGames = videogames.slice(indexOfFirstGame, indexOfLastGame)
 
-    // Define loading
-    const loading = loadingVideogames || loadingGenres || loadingSearch
+    // Get videogames and genres at first rendering
 
-    if (loadingVideogames && loadingGenres) {
+    if (!videogamesAll.length && !genres.length) {
         dispatch(getVideogames())
         dispatch(getGenres())
     }
 
+    // Define loading
+    const loading = loadingVideogames || loadingGenres || loadingSearch
+
     return (
-        <div className={'containerHome' + (!currentGames.length ? ' backImg100vh' : '')}>
+        <div className='containerHome'>
             <br></br>
             <NavBar />
             <div className='homeSettingsContainer'>

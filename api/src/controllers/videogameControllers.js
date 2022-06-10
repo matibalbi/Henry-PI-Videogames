@@ -70,7 +70,48 @@ const postVideogame = async (req, res, next) => {
     }
 }
 
+const putVideogame = async (req, res, next) => {
+
+    const {id} = req.params
+    let {name, image, description, released, rating, genres, platforms} = req.body
+    if (released === "") released = null
+    if (rating === "") rating = null
+    platforms = platforms.join(", ")
+
+    try {
+        const videogame = await Videogame.findByPk(id)
+        const update = await videogame.update(
+            {name, image, description, released, rating, platforms},
+            )
+        const videogameGenres = await videogame.getGenres()
+        await videogame.removeGenres(videogameGenres)
+        let arrPromises = genres.map(e => (
+            Genre.findOne({where: {name: e}})
+            .then(res => videogame.addGenre(res))
+        ))
+        await Promise.all(arrPromises)
+        res.status(201).send("Videogame updated correctly");
+    } catch (error) {
+        next(error)
+    }
+}
+
+const deleteVideogame = async (req, res, next) => {
+
+    const {id} = req.params
+
+    try {
+        let videogame = await Videogame.findByPk(id)
+        videogame.destroy()
+        res.status(201).send("Videogame deleted correctly");
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     getVideogameByID,
-    postVideogame
+    postVideogame,
+    putVideogame,
+    deleteVideogame
 }

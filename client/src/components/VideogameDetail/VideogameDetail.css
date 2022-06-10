@@ -3,7 +3,54 @@
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 100vh;
+    min-height: 100vh;
+}
+
+.containerButtonsDetail {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.boxButtonsDetail {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    background-color: rgba(34,34,34, 0.9);
+    border-radius: 20px;
+    padding: 20px 0px
+}
+
+.buttonDetail {
+    margin: 0px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,.1), 0 2px 5px rgba(0,0,0,.5);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.0em;
+    padding: 10px 10px;
+}
+
+.updateButton {
+    background: blue;
+    color: #fff;
+}
+
+.updateButton:hover {
+    background: #fff;
+    color: blue;
+}
+
+.deleteButton {
+    background: red;
+    color: #fff;
+}
+
+.deleteButton:hover {
+    background: #fff;
+    color: red;
 }
 
 .containerDetail {
@@ -33,10 +80,18 @@
 }
 
 .imgDetail {
-    width: 700px;
-    max-height: 500px;
     border: 2px solid #fff;
     border-radius: 20px;
+}
+
+.imgDetailDB {
+    width: 600px;
+    max-height: 400px;
+}
+
+.imgDetailApi {
+    width: 700px;
+    max-height: 500px;
 }
 
 .containerDetailInfo {

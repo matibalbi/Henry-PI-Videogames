@@ -9,11 +9,12 @@ const Reset = () => {
   const filterGenre = useSelector(state => state.filterGenre)
   const filterType = useSelector(state => state.filterType)
   const currentPage = useSelector(state => state.currentPage)
-  const loadingVideogames = useSelector(state => state.loadingVideogames)
-  const loadingGenres = useSelector(state => state.loadingGenres)
-  const loadingSearch = useSelector(state => state.loadingSearch)
 
-  const loading = loadingVideogames || loadingGenres || loadingSearch
+  // const loadingVideogames = useSelector(state => state.loadingVideogames)
+  // const loadingGenres = useSelector(state => state.loadingGenres)
+  // const loadingSearch = useSelector(state => state.loadingSearch)
+
+  // const loading = loadingVideogames || loadingGenres || loadingSearch
 
   const dispatch = useDispatch()
 
@@ -26,8 +27,10 @@ const Reset = () => {
   }
 
   return (
-    <button type="button" className={loading ? 'resetDisabled' : 'resetActive'} disabled={loading} onClick={handleClick}>Reset filters</button>
+    <button type="button" className={'resetActive'} onClick={handleClick}>Reset filters</button>
   );
 }
+
+// disabled={loading} className={loading ? 'resetDisabled' : 'resetActive'}
 
 export default Reset;

@@ -3,10 +3,7 @@
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
-
-.backImg100vh {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .homeSettingsContainer {

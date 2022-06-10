@@ -3,6 +3,7 @@ export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
 export const GET_VIDEOGAMES_SEARCH = 'GET_VIDEOGAMES_SEARCH';
 export const GET_VIDEOGAME_DETAIL = 'GET_VIDEOGAME_DETAIL';
 export const GET_GENRES = 'GET_GENRES';
+export const SET_VIDEOGAME_UPDATE = 'SET_VIDEOGAME_UPDATE';
 export const SET_SEARCH = 'SET_SEARCH';
 export const SET_INPUT_SEARCH = 'SET_INPUT_SEARCH';
 export const SET_SORT_NAME = 'SET_SORT_NAME';
@@ -15,6 +16,7 @@ export const SET_LOADING_GENRES = 'SET_LOADING_GENRES';
 export const SET_LOADING_SEARCH = 'SET_LOADING_SEARCH';
 export const SET_LOADING_DETAIL = 'SET_LOADING_DETAIL';
 export const RESET_DETAIL = 'RESET_DETAIL';
+export const RESET_UPDATE = 'RESET_UPDATE';
 
 export const getVideogames = () => {
     return (dispatch) => {
@@ -43,6 +45,12 @@ export const getGenres = () => {
         .then(res => {
             dispatch({type: GET_GENRES, payload: res.data})
         })
+    }
+}
+
+export const setVideogameUpdate = (value) => {
+    return (dispatch) => {
+        dispatch({type: SET_VIDEOGAME_UPDATE, payload: value})
     }
 }
 
@@ -115,5 +123,11 @@ export const setLoadingDetail = (value) => {
 export const resetDetail = () => {
     return (dispatch) => {
         dispatch({type: RESET_DETAIL, payload: {}})
+    }
+}
+
+export const resetUpdate = () => {
+    return (dispatch) => {
+        dispatch({type: RESET_UPDATE, payload: {}})
     }
 }

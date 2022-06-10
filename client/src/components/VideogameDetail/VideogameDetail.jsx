@@ -1,6 +1,9 @@
-import {useEffect} from "react"
+import axios from 'axios';
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { getVideogameDetail, resetDetail, setLoadingDetail } from "../../redux/actions"
+import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { getVideogameDetail, setLoadingDetail, getGenres, getVideogames, setLoadingGenres, setLoadingVideogames, setVideogameUpdate, resetDetail } from "../../redux/actions"
 import DefaultImage from '../../img/controller.jpg'
 import './VideogameDetail.css'
 import Loader from "../Loader/Loader"
@@ -12,7 +15,11 @@ const VideogameDetail = (props) => {
     const videogameDetail = useSelector(state => state.videogameDetail)
     const loadingDetail = useSelector(state => state.loadingDetail)
 
+    const [redirect, setRedirect] = useState(false);
+        
     const id = props.match.params.id
+
+    const idFromDB = id.length === 36
     
     const dispatch = useDispatch()
 
@@ -24,16 +31,47 @@ const VideogameDetail = (props) => {
         }
     }, [dispatch, id])
 
+    const handleClickUpdate = () => {
+        dispatch(setVideogameUpdate(videogameDetail))
+    }
+
+    const handleClickDelete = () => {
+        axios.delete(`http://localhost:3001/videogame/${id}/delete`)
+        .then(res => {
+         if (res.status === 201) {
+            dispatch(setLoadingVideogames(true))
+            dispatch(setLoadingGenres(true))
+            dispatch(getVideogames())
+            dispatch(getGenres())
+            alert('Videogame deleted successfully')
+            setRedirect(true)
+         }
+      })
+      .catch(error => alert(error.message))
+    }
+
     if (videogameDetail.error) return <IdNotFound id={id} />
     
     const modifyDescription = () => {
         return {__html: videogameDetail?.description};
       }
 
+    if (redirect) return <Redirect to='/home' />
+      
     return (
         <div className='backgroundDetail'>
             <br></br>
             <NavBar />
+            {idFromDB &&
+                <div className='containerButtonsDetail'>
+                    <div className='boxButtonsDetail'>
+                        <Link to={`/videogame/${id}/update`}>
+                            <button type="button" className='buttonDetail updateButton' onClick={handleClickUpdate}>Update</button>
+                        </Link>
+                        <button type="button" className='buttonDetail deleteButton' onClick={handleClickDelete}>Delete</button>
+                    </div>
+                </div>
+            }
             {loadingDetail && <div><br></br><br></br><br></br><Loader /></div>}
             {!loadingDetail &&
             <div className='containerDetail'>
@@ -42,7 +80,7 @@ const VideogameDetail = (props) => {
                 </div>
                 <div className='containerDetailBody'>
                     <div>
-                        <img src={videogameDetail?.image || DefaultImage} alt={videogameDetail?.name} className='imgDetail'/>
+                        <img src={videogameDetail?.image || DefaultImage} alt={videogameDetail?.name} className={'imgDetail' + (idFromDB ? ' imgDetailDB' : ' imgDetailApi')}/>
                     </div>
                     <div className='containerDetailInfo'>
                         <div className="ratingDetail fontBodyDetail">
@@ -52,7 +90,10 @@ const VideogameDetail = (props) => {
                             {!videogameDetail.rating && <span className="orangeDetail"> (not rated)</span>}
                         </div>
                         <div className='releasedDetail fontBodyDetail'>
-                            <span>Released <span className="arrowRating">&#129146;</span><span className="fontWeightDetail"> {videogameDetail?.released}</span></span>
+                            <span>Released </span>
+                            <span className="arrowRating">&#129146;</span>
+                            {!!videogameDetail.released && <span><span className="fontWeightDetail"> {videogameDetail.released}</span></span>}
+                            {!videogameDetail.released && <span className="orangeDetail"> (no release date assigned)</span>}
                         </div>
                         <div className="genresDetail fontBodyDetail">
                             <span>Genres </span>

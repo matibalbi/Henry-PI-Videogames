@@ -6,7 +6,7 @@ function NavBar() {
         <ul className="nav">
             <li><Link to="/" className="navLinks">Landing</Link></li>
             <li><NavLink to="/home" className="navLinks">Home</NavLink></li>
-            <li><NavLink to="/createVideogame" className="navLinks">Create Video game</NavLink></li>
+            <li><NavLink to="/createVideogame" className="navLinks">Create</NavLink></li>
         </ul>
     )
 }

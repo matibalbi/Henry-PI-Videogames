@@ -1,4 +1,4 @@
-import {GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES_SEARCH, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT_NAME, SET_SORT_RATING, SET_LOADING_VIDEOGAMES, SET_LOADING_GENRES, SET_SEARCH, SET_LOADING_SEARCH, SET_INPUT_SEARCH, SET_LOADING_DETAIL, RESET_DETAIL} from "./actions"
+import {GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES_SEARCH, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT_NAME, SET_SORT_RATING, SET_LOADING_VIDEOGAMES, SET_LOADING_GENRES, SET_SEARCH, SET_LOADING_SEARCH, SET_INPUT_SEARCH, SET_LOADING_DETAIL, SET_VIDEOGAME_UPDATE, RESET_DETAIL, RESET_UPDATE} from "./actions"
 import {sortNameAZ} from "../controllers/controllers";
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
     videogamesSearch: [],
     videogameDetail: {},
     genres: [],
+    videogameUpdate: {},
     search: false,
     inputSearch: "",
     sortName: "",
@@ -46,6 +47,11 @@ const reducer = (state = initialState, {type, payload}) => {
                 ...state,
                 genres: payload,
                 loadingGenres: false
+            }
+        case SET_VIDEOGAME_UPDATE:
+            return {
+                ...state,
+                videogameUpdate: payload
             }
         case SET_SEARCH:
             return {
@@ -106,6 +112,11 @@ const reducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 videogameDetail: payload
+            }
+        case RESET_UPDATE:
+            return {
+                ...state,
+                videogameUpdate: payload
             }
         default:
             return state
