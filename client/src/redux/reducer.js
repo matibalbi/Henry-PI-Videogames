@@ -1,48 +1,57 @@
-import {GET_GENRES, GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_VIDEOGAMES_SEARCH, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT_NAME, SET_SORT_RATING, SET_LOADING_VIDEOGAMES, SET_LOADING_GENRES, SET_SEARCH, SET_LOADING_SEARCH, SET_INPUT_SEARCH, SET_LOADING_DETAIL, SET_VIDEOGAME_UPDATE, RESET_DETAIL, RESET_UPDATE, GET_VIDEOGAMES_FROM_DB, GET_VIDEOGAMES_SEARCH_FROM_DB, GET_VIDEOGAMES_FROM_API, GET_VIDEOGAMES_SEARCH_FROM_API} from "./actions"
+import {GET_GENRES, GET_VIDEOGAME_DETAIL, SET_CURRENT_PAGE, SET_FILTER_GENRE, SET_FILTER_TYPE, SET_SORT_NAME, SET_SORT_RATING, SET_LOADING_GENRES, SET_INPUT_SEARCH, SET_LOADING_DETAIL, SET_VIDEOGAME_UPDATE, RESET_DETAIL, RESET_UPDATE, GET_VIDEOGAMES_FROM_DB, GET_VIDEOGAMES_SEARCH_FROM_DB, GET_VIDEOGAMES_FROM_API, GET_VIDEOGAMES_SEARCH_FROM_API, SET_LOADING_VIDEOGAMES_DB, SET_LOADING_VIDEOGAMES_API, SET_LOADING_SEARCH_DB, SET_LOADING_SEARCH_API, SET_SEARCH_DB, SET_SEARCH_API} from "./actions"
 import {sortNameAZ} from "../controllers/controllers";
 
 const initialState = {
-    videogames: [],
-    videogamesSearch: [],
+    videogamesDB: [],
+    videogamesAPI: [],
+    videogamesSearchDB: [],
+    videogamesSearchAPI: [],
     videogameDetail: {},
     genres: [],
     videogameUpdate: {},
-    search: false,
+    searchDB: false,
+    searchAPI: false,
     inputSearch: "",
     sortName: "",
     sortRating: "",
     filterGenre: "",
     filterType: "",
     currentPage: 1,
-    loadingVideogames: true,
-    loadingGenres: true,
-    loadingSearch: false,
-    loadingDetail: true,
-
-    videogamesDB: [],
-    videogamesAPI: [],
-    searchDB: false,
-    searchAPI: false,
     loadingVideogamesDB: true,
     loadingVideogamesAPI: true,
+    loadingGenres: true,
+    loadingDetail: true,
     loadingSearchDB: false,
     loadingSearchAPI: false,
 }
 
 const reducer = (state = initialState, {type, payload}) => {
     switch (type) {
-        case GET_VIDEOGAMES:
+        case GET_VIDEOGAMES_FROM_DB:
             return {
                 ...state,
-                videogames: payload,
-                loadingVideogames: false
+                videogamesDB: payload,
+                loadingVideogamesDB: false
             }
-        case GET_VIDEOGAMES_SEARCH:
+        case GET_VIDEOGAMES_FROM_API:
             return {
                 ...state,
-                videogamesSearch: payload,
-                search: true,
-                loadingSearch: false
+                videogamesAPI: payload,
+                loadingVideogamesAPI: false
+            }
+        case GET_VIDEOGAMES_SEARCH_FROM_DB:
+            return {
+                ...state,
+                videogamesSearchDB: payload,
+                searchDB: true,
+                loadingSearchDB: false
+            }
+        case GET_VIDEOGAMES_SEARCH_FROM_API:
+            return {
+                ...state,
+                videogamesSearchAPI: payload,
+                searchAPI: true,
+                loadingSearchAPI: false
             }
         case GET_VIDEOGAME_DETAIL:
             return {
@@ -62,10 +71,15 @@ const reducer = (state = initialState, {type, payload}) => {
                 ...state,
                 videogameUpdate: payload
             }
-        case SET_SEARCH:
+        case SET_SEARCH_DB:
             return {
                 ...state,
-                search: payload
+                searchDB: payload
+            }
+        case SET_SEARCH_API:
+            return {
+                ...state,
+                searchAPI: payload
             }
         case SET_INPUT_SEARCH:
             return {
@@ -97,20 +111,30 @@ const reducer = (state = initialState, {type, payload}) => {
                 ...state,
                 currentPage: payload
             }
-        case SET_LOADING_VIDEOGAMES:
+        case SET_LOADING_VIDEOGAMES_DB:
             return {
                 ...state,
-                loadingVideogames: payload,
+                loadingVideogamesDB: payload,
+            }
+        case SET_LOADING_VIDEOGAMES_API:
+            return {
+                ...state,
+                loadingVideogamesAPI: payload,
             }
         case SET_LOADING_GENRES:
             return {
                 ...state,
                 loadingGenres: payload
             }
-        case SET_LOADING_SEARCH:
+        case SET_LOADING_SEARCH_DB:
             return {
                 ...state,
-                loadingSearch: payload
+                loadingSearchDB: payload
+            }
+        case SET_LOADING_SEARCH_API:
+            return {
+                ...state,
+                loadingSearchAPI: payload
             }
         case SET_LOADING_DETAIL:
             return {
@@ -126,35 +150,6 @@ const reducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 videogameUpdate: payload
-            }
-
-        case GET_VIDEOGAMES_FROM_DB:
-            return {
-                ...state,
-                videogamesDB: payload,
-                videogames: [...payload,...state.videogamesAPI],
-                loadingVideogamesDB: false
-            }
-        case GET_VIDEOGAMES_FROM_API:
-            return {
-                ...state,
-                videogamesAPI: payload,
-                videogames: [...state.videogamesDB,...payload],
-                loadingVideogamesAPI: false
-            }
-        case GET_VIDEOGAMES_SEARCH_FROM_DB:
-            return {
-                ...state,
-                videogamesSearch: payload,
-                searchDB: true,
-                loadingSearchDB: false
-            }
-        case GET_VIDEOGAMES_SEARCH_FROM_API:
-            return {
-                ...state,
-                videogamesSearch: payload,
-                searchAPI: true,
-                loadingSearchAPI: false
             }
         default:
             return state

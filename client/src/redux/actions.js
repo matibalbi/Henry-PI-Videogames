@@ -1,39 +1,53 @@
 import axios from "axios"
-export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
-export const GET_VIDEOGAMES_SEARCH = 'GET_VIDEOGAMES_SEARCH';
+export const GET_VIDEOGAMES_FROM_DB = 'GET_VIDEOGAMES_FROM_DB';
+export const GET_VIDEOGAMES_FROM_API = 'GET_VIDEOGAMES_FROM_API';
+export const GET_VIDEOGAMES_SEARCH_FROM_DB = 'GET_VIDEOGAMES_SEARCH_FROM_DB';
+export const GET_VIDEOGAMES_SEARCH_FROM_API = 'GET_VIDEOGAMES_SEARCH_FROM_API';
 export const GET_VIDEOGAME_DETAIL = 'GET_VIDEOGAME_DETAIL';
 export const GET_GENRES = 'GET_GENRES';
 export const SET_VIDEOGAME_UPDATE = 'SET_VIDEOGAME_UPDATE';
-export const SET_SEARCH = 'SET_SEARCH';
+export const SET_SEARCH_DB = 'SET_SEARCH_DB';
+export const SET_SEARCH_API = 'SET_SEARCH_API';
 export const SET_INPUT_SEARCH = 'SET_INPUT_SEARCH';
 export const SET_SORT_NAME = 'SET_SORT_NAME';
 export const SET_SORT_RATING = 'SET_SORT_RATING';
 export const SET_FILTER_GENRE = 'SET_FILTER_GENRE';
 export const SET_FILTER_TYPE = 'SET_FILTER_TYPE';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-export const SET_LOADING_VIDEOGAMES = 'SET_LOADING_VIDEOGAMES';
+export const SET_LOADING_VIDEOGAMES_DB = 'SET_LOADING_VIDEOGAMES_DB';
+export const SET_LOADING_VIDEOGAMES_API = 'SET_LOADING_VIDEOGAMES_API';
 export const SET_LOADING_GENRES = 'SET_LOADING_GENRES';
-export const SET_LOADING_SEARCH = 'SET_LOADING_SEARCH';
+export const SET_LOADING_SEARCH_DB = 'SET_LOADING_SEARCH_DB';
+export const SET_LOADING_SEARCH_API = 'SET_LOADING_SEARCH_API';
 export const SET_LOADING_DETAIL = 'SET_LOADING_DETAIL';
 export const RESET_DETAIL = 'RESET_DETAIL';
 export const RESET_UPDATE = 'RESET_UPDATE';
 
-export const GET_VIDEOGAMES_FROM_DB = 'GET_VIDEOGAMES_FROM_DB';
-export const GET_VIDEOGAMES_FROM_API = 'GET_VIDEOGAMES_FROM_API';
-export const GET_VIDEOGAMES_SEARCH_FROM_DB = 'GET_VIDEOGAMES_SEARCH_FROM_DB';
-export const GET_VIDEOGAMES_SEARCH_FROM_API = 'GET_VIDEOGAMES_SEARCH_FROM_API';
-
-export const getVideogames = () => {
+export const getVideogamesFromDB = () => {
     return (dispatch) => {
-        return axios("http://localhost:3001/videogames")
-        .then(res => dispatch({type: GET_VIDEOGAMES, payload: res.data}))
+        return axios("http://localhost:3001/videogames/db")
+        .then(res => dispatch({type: GET_VIDEOGAMES_FROM_DB, payload: res.data}))
     }
 }
 
-export const getVideogamesSearch = videogame => {
+export const getVideogamesFromAPI = () => {
     return (dispatch) => {
-        return axios(`http://localhost:3001/videogames?game=${videogame}`)
-        .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH, payload: res.data}))
+        return axios("http://localhost:3001/videogames/api")
+        .then(res => dispatch({type: GET_VIDEOGAMES_FROM_API, payload: res.data}))
+    }
+}
+
+export const getVideogamesSearchFromDB = videogame => {
+    return (dispatch) => {
+        return axios(`http://localhost:3001/videogames/db?game=${videogame}`)
+        .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH_FROM_DB, payload: res.data}))
+    }
+}
+
+export const getVideogamesSearchFromAPI = videogame => {
+    return (dispatch) => {
+        return axios(`http://localhost:3001/videogames/api?game=${videogame}`)
+        .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH_FROM_API, payload: res.data}))
     }
 }
 
@@ -59,9 +73,15 @@ export const setVideogameUpdate = value => {
     }
 }
 
-export const setSearch = value => {
+export const setSearchDB = value => {
     return (dispatch) => {
-        dispatch({type: SET_SEARCH, payload: value})
+        dispatch({type: SET_SEARCH_DB, payload: value})
+    }
+}
+
+export const setSearchAPI = value => {
+    return (dispatch) => {
+        dispatch({type: SET_SEARCH_API, payload: value})
     }
 }
 
@@ -101,9 +121,15 @@ export const setCurrentPage = number => {
     }
 }
 
-export const setLoadingVideogames = value => {
+export const setLoadingVideogamesDB = value => {
     return (dispatch) => {
-        dispatch({type: SET_LOADING_VIDEOGAMES, payload: value})
+        dispatch({type: SET_LOADING_VIDEOGAMES_DB, payload: value})
+    }
+}
+
+export const setLoadingVideogamesAPI = value => {
+    return (dispatch) => {
+        dispatch({type: SET_LOADING_VIDEOGAMES_API, payload: value})
     }
 }
 
@@ -113,9 +139,15 @@ export const setLoadingGenres = value => {
     }
 }
 
-export const setLoadingSearch = value => {
+export const setLoadingSearchDB = value => {
     return (dispatch) => {
-        dispatch({type: SET_LOADING_SEARCH, payload: value})
+        dispatch({type: SET_LOADING_SEARCH_DB, payload: value})
+    }
+}
+
+export const setLoadingSearchAPI = value => {
+    return (dispatch) => {
+        dispatch({type: SET_LOADING_SEARCH_API, payload: value})
     }
 }
 
@@ -134,33 +166,5 @@ export const resetDetail = () => {
 export const resetUpdate = () => {
     return (dispatch) => {
         dispatch({type: RESET_UPDATE, payload: {}})
-    }
-}
-
-export const getVideogamesFromDB = () => {
-    return (dispatch) => {
-        return axios("http://localhost:3001/videogames/db")
-        .then(res => dispatch({type: GET_VIDEOGAMES_FROM_DB, payload: res.data}))
-    }
-}
-
-export const getVideogamesFromAPI = () => {
-    return (dispatch) => {
-        return axios("http://localhost:3001/videogames/api")
-        .then(res => dispatch({type: GET_VIDEOGAMES_FROM_API, payload: res.data}))
-    }
-}
-
-export const getVideogamesSearchFromDB = videogame => {
-    return (dispatch) => {
-        return axios(`http://localhost:3001/videogames/db?game=${videogame}`)
-        .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH_FROM_DB, payload: res.data}))
-    }
-}
-
-export const getVideogamesSearchFromAPI = videogame => {
-    return (dispatch) => {
-        return axios(`http://localhost:3001/videogames/api?game=${videogame}`)
-        .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH_FROM_API, payload: res.data}))
     }
 }

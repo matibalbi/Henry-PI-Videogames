@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router-dom';
-import { getGenres, getVideogames, resetUpdate, setLoadingGenres, setLoadingVideogames } from '../../redux/actions';
+import {  getVideogamesFromDB, resetUpdate, setLoadingVideogamesDB } from '../../redux/actions';
 import Error404 from '../Error404/Error404';
 import NavBar from "../NavBar/NavBar";
 import './UpdateVideogame.css'
@@ -85,10 +85,8 @@ const UpdateVideogame = (props) => {
       axios.put(`http://localhost:3001/videogame/${id}/update`, input)
       .then(res => {
          if (res.status === 201) {
-            dispatch(setLoadingVideogames(true))
-            dispatch(setLoadingGenres(true))
-            dispatch(getVideogames())
-            dispatch(getGenres())
+            dispatch(setLoadingVideogamesDB(true))
+            dispatch(getVideogamesFromDB())
             alert('Videogame updated successfully')
             setRedirect(true)
          }

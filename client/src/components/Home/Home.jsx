@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux"
 import {sortNameAZ, sortNameZA, sortRatingBW, sortRatingWB} from "../../controllers/controllers";
-import {getGenres, getVideogames, getVideogamesFromAPI, getVideogamesFromDB} from "../../redux/actions"
+import {getGenres, getVideogamesFromAPI, getVideogamesFromDB} from "../../redux/actions"
 import BackToAllGames from "../BackToAllGames/BackToAllGames";
 import Filters from "../Filters/Filters";
 import Loader from "../Loader/Loader";
@@ -16,33 +16,33 @@ import './Home.css';
 const Home = () => {
 
     // Define global states from store
-    const videogamesAll = useSelector(state => state.videogames)
-    const videogamesSearch = useSelector(state => state.videogamesSearch)
+    const videogamesDB = useSelector(state => state.videogamesDB)
+    const videogamesAPI = useSelector(state => state.videogamesAPI)
     const genres = useSelector(state => state.genres)
-    const search = useSelector(state => state.search)
+    const videogamesSearchDB = useSelector(state => state.videogamesSearchDB)
+    const videogamesSearchAPI = useSelector(state => state.videogamesSearchAPI)
+    const searchDB = useSelector(state => state.searchDB)
+    const searchAPI = useSelector(state => state.searchAPI)
+    const loadingVideogamesDB = useSelector(state => state.loadingVideogamesDB)
+    const loadingVideogamesAPI = useSelector(state => state.loadingVideogamesAPI)
+    const loadingGenres = useSelector(state => state.loadingGenres)
+    const loadingSearchDB = useSelector(state => state.loadingSearchDB)
+    const loadingSearchAPI = useSelector(state => state.loadingSearchAPI)
     const currentPage = useSelector(state => state.currentPage)
     const sortName = useSelector(state => state.sortName)
     const sortRating = useSelector(state => state.sortRating)
     const filterGenre = useSelector(state => state.filterGenre)
     const filterType = useSelector(state => state.filterType)
-    const loadingVideogames = useSelector(state => state.loadingVideogames)
-    const loadingGenres = useSelector(state => state.loadingGenres)
-    const loadingSearch = useSelector(state => state.loadingSearch)
-
-    const loadingVideogamesDB = useSelector(state => state.loadingVideogamesDB)
-    const loadingVideogamesAPI = useSelector(state => state.loadingVideogamesAPI)
-    const loadingSearchDB = useSelector(state => state.loadingSearchDB)
-    const loadingSearchAPI = useSelector(state => state.loadingSearchAPI)
 
     const dispatch = useDispatch()
 
     // Define loading
     const loading = loadingVideogamesDB || loadingVideogamesAPI || loadingGenres || loadingSearchDB || loadingSearchAPI
-    // const loading = loadingVideogames || loadingGenres || loadingSearch
 
     let videogames = []
-    // ELIMINAR DEL REDUCER VIDEOGAMES ALL Y DEFINIR videogames UNIENDO videogamesDB y videogamesAPI
-    if (!loading) videogames = search ? videogamesSearch.slice() : videogamesAll.slice()
+    if (!loading) videogames = (searchDB && searchAPI)
+        ? [...videogamesSearchDB, ...videogamesSearchAPI].slice(0, 15)
+        : [...videogamesDB, ...videogamesAPI].slice()
 
     // Sort videogames
     switch (sortName) {
@@ -82,10 +82,9 @@ const Home = () => {
     const currentGames = videogames.slice(indexOfFirstGame, indexOfLastGame)
 
     // Get videogames and genres at first rendering
-    if (!videogamesAll.length && !genres.length) {
+    if (!videogamesDB.length && !videogamesAPI.length && !genres.length) {
         dispatch(getVideogamesFromAPI())
         dispatch(getVideogamesFromDB())
-        // dispatch(getVideogames())
         dispatch(getGenres())
     }
 
@@ -102,7 +101,7 @@ const Home = () => {
                     </div>
                     <Filters />
                     <Pagination gamesPerPage={gamesPerPage} totalGames={videogames.length}/>
-                    {search && <BackToAllGames/>}
+                    {searchDB && searchAPI && <BackToAllGames/>}
                 </div>
             </div>
             {loading && <Loader />}

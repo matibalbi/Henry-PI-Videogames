@@ -3,8 +3,6 @@ const { getVideogames, getVideogamesfromDB, getVideogamesFromAPI } = require('..
 
 const router = Router();
 
-router.get("/", getVideogames)
-
 router.get("/db", getVideogamesfromDB)
 
 router.get("/api", getVideogamesFromAPI)

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from 'react-router-dom';
-import { getGenres, getVideogames, setLoadingGenres, setLoadingVideogames } from '../../redux/actions';
+import { getVideogamesFromDB, setLoadingVideogamesDB } from '../../redux/actions';
 import NavBar from "../NavBar/NavBar";
 import './CreateVideogame.css'
 
@@ -72,10 +72,8 @@ const CreateVideogame = () => {
       axios.post('http://localhost:3001/videogame', input)
       .then(res => {
          if (res.status === 201) {
-            dispatch(setLoadingVideogames(true))
-            dispatch(setLoadingGenres(true))
-            dispatch(getVideogames())
-            dispatch(getGenres())
+            dispatch(setLoadingVideogamesDB(true))
+            dispatch(getVideogamesFromDB())
             alert('Videogame created successfully')
             setRedirect(true)
          }

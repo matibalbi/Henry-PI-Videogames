@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux"
-import {getVideogamesSearch, setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating, setLoadingSearch, setInputSearch} from "../../redux/actions";
+import {setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating, setInputSearch, setLoadingSearchDB, setLoadingSearchAPI, getVideogamesSearchFromDB, getVideogamesSearchFromAPI} from "../../redux/actions";
 import './SearchBar.css'
 
 const SearchBar = () => {
@@ -25,8 +25,10 @@ const SearchBar = () => {
   const handleSubmit = e => {
     e.preventDefault();
     if (inputSearch) {
-      dispatch(getVideogamesSearch(inputSearch))
-      dispatch(setLoadingSearch(true))
+      dispatch(setLoadingSearchAPI(true))
+      dispatch(setLoadingSearchDB(true))
+      dispatch(getVideogamesSearchFromAPI(inputSearch))
+      dispatch(getVideogamesSearchFromDB(inputSearch))
       if (sortName !== "") dispatch(setSortName(""))
       if (sortRating !== "") dispatch(setSortRating(""))
       if (filterGenre !== "") dispatch(setFilterGenre(""))

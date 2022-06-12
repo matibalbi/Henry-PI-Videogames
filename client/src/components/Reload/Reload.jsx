@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux"
-import {setLoadingGenres, setLoadingVideogames, setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating, getVideogames, getGenres} from "../../redux/actions";
+import {setLoadingGenres, setCurrentPage, setFilterGenre, setFilterType, setSortName, setSortRating, getGenres, setLoadingVideogamesDB, setLoadingVideogamesAPI, getVideogamesFromDB, getVideogamesFromAPI} from "../../redux/actions";
 import './Reload.css'
 
 const Reload = () => {
@@ -13,9 +13,11 @@ const Reload = () => {
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    dispatch(setLoadingVideogames(true))
+    dispatch(setLoadingVideogamesAPI(true))
+    dispatch(setLoadingVideogamesDB(true))
     dispatch(setLoadingGenres(true))
-    dispatch(getVideogames())
+    dispatch(getVideogamesFromAPI())
+    dispatch(getVideogamesFromDB())
     dispatch(getGenres())
     if (sortName !== "") dispatch(setSortName(""))
     if (sortRating !== "") dispatch(setSortRating(""))

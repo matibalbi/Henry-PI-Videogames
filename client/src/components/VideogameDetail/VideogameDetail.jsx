@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import { getVideogameDetail, setLoadingDetail, getGenres, getVideogames, setLoadingGenres, setLoadingVideogames, setVideogameUpdate, resetDetail } from "../../redux/actions"
+import { getVideogameDetail, setLoadingDetail, setVideogameUpdate, resetDetail, setLoadingVideogamesDB, getVideogamesFromDB } from "../../redux/actions"
 import DefaultImage from '../../img/controller.jpg'
 import './VideogameDetail.css'
 import Loader from "../Loader/Loader"
@@ -39,10 +39,8 @@ const VideogameDetail = (props) => {
         axios.delete(`http://localhost:3001/videogame/${id}/delete`)
         .then(res => {
          if (res.status === 201) {
-            dispatch(setLoadingVideogames(true))
-            dispatch(setLoadingGenres(true))
-            dispatch(getVideogames())
-            dispatch(getGenres())
+            dispatch(setLoadingVideogamesDB(true))
+            dispatch(getVideogamesFromDB())
             alert('Videogame deleted successfully')
             setRedirect(true)
          }

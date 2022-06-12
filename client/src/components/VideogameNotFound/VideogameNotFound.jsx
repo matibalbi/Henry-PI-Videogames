@@ -5,14 +5,15 @@ import './VideogameNotFound.css'
 
 const VideogameNotFound = () => {
 
-    const search = useSelector(state => state.search)
+    const searchDB = useSelector(state => state.searchDB)
+    const searchAPI = useSelector(state => state.searchAPI)
     const filterGenre = useSelector(state => state.filterGenre)
     const filterType = useSelector(state => state.filterType)
 
-    const luigi = search && filterGenre === "" && filterType === ""
+    const luigi = searchDB && searchAPI && filterGenre === "" && filterType === ""
 
     return (
-        <div className={'containerNotFound' + (search ? ' marginShortNotFound' : ' marginLongNotFound')}>
+        <div className={'containerNotFound' + ((searchDB && searchAPI) ? ' marginShortNotFound' : ' marginLongNotFound')}>
             {luigi && <img src={LuigiLost} alt={"search not found"} className='imgSearchNotFound'/>}
             {!luigi && <img src={MarioDead} alt={"filter not found"} className='imgFilterNotFound'/>}
         </div>
