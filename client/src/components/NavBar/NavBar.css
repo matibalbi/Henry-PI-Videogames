@@ -1,9 +1,10 @@
 .nav {
     display: flex;
+    justify-content: space-between;
     border-left: 5px solid #ff2562;
-    padding: 10px 0px 10px 20px;
+    border-right: 5px solid #ff2562;
+    padding: 10px 20px 10px 20px;
     margin: 0px 10px 25px 10px;
-    background-color: rgba(34,34,34, 0.7);
 }
 
 .nav li {
@@ -14,7 +15,7 @@
     text-decoration: none;
     color: #fff;
     margin-right: 30px;
-    font-size: 1.0em;
+    font-size: 1.2em;
     text-transform: uppercase;
     font-weight: 700;
 }
@@ -22,4 +23,12 @@
 .navLinks.active,
 .navLinks:hover {
     color: #ff2562;
+}
+
+.containerHomeCreate {
+    display: flex;
+}
+
+.exitLink {
+    margin-right: 0px;
 }
