@@ -9,8 +9,7 @@ const getAllGenres = async () => {
         await Genre.bulkCreate(genres)
         console.log("Genres loaded in DB correctly")
     } catch (error) {
-        // next(error)
-        console.log(error)
+        next(error)
     }
 }
 
