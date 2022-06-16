@@ -1,10 +1,16 @@
 .containerLoader {
     display: flex;
     justify-content: center;
+    margin: 25px 10px 0px;
+}
+
+.backgroundLoader {
+    display: flex;
+    justify-content: center;
     background-color: rgba(34,34,34, 0.7);
     border-radius: 20px;
-    padding: 20px 0px;
-    margin: 25px 10px 0px
+    padding: 20px;
+    width: 400px;
 }
 
 .loader {

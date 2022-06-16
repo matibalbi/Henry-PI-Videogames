@@ -1,9 +1,15 @@
 .containerNotFound {
     display: flex;
     justify-content: center;
+}
+
+.backgroundNotFound {
+    display: flex;
+    justify-content: center;
     background-color: rgba(34,34,34, 0.7);
     border-radius: 20px;
-    padding: 20px 0px;
+    padding: 20px;
+    width: 576px;
 }
 
 .marginShortNotFound {

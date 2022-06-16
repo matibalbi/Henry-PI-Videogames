@@ -14,8 +14,10 @@ const VideogameNotFound = () => {
 
     return (
         <div className={'containerNotFound' + ((searchDB && searchAPI) ? ' marginShortNotFound' : ' marginLongNotFound')}>
-            {luigi && <img src={LuigiLost} alt={"search not found"} className='imgSearchNotFound'/>}
-            {!luigi && <img src={MarioDead} alt={"filter not found"} className='imgFilterNotFound'/>}
+            <div className='backgroundNotFound'>
+                {luigi && <img src={LuigiLost} alt={"search not found"} className='imgSearchNotFound'/>}
+                {!luigi && <img src={MarioDead} alt={"filter not found"} className='imgFilterNotFound'/>}
+            </div>
         </div>
     );
 }

@@ -3,10 +3,11 @@ import './Loader.css';
 
 const Loader = () => {
 
-
     return (
         <div className='containerLoader'>
-            <img src={MarioLoading} alt={"loading"} className='loader'/>
+            <div className='backgroundLoader'>
+                <img src={MarioLoading} alt={"loading"} className='loader'/>
+            </div>
         </div>
     )
 }
