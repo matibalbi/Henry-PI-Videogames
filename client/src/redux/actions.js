@@ -25,42 +25,42 @@ export const RESET_UPDATE = 'RESET_UPDATE';
 
 export const getVideogamesFromDB = () => {
     return (dispatch) => {
-        return axios("http://localhost:3001/videogames/db")
+        return axios("/videogames/db")
         .then(res => dispatch({type: GET_VIDEOGAMES_FROM_DB, payload: res.data}))
     }
 }
 
 export const getVideogamesFromAPI = () => {
     return (dispatch) => {
-        return axios("http://localhost:3001/videogames/api")
+        return axios("/videogames/api")
         .then(res => dispatch({type: GET_VIDEOGAMES_FROM_API, payload: res.data}))
     }
 }
 
 export const getVideogamesSearchFromDB = videogame => {
     return (dispatch) => {
-        return axios(`http://localhost:3001/videogames/db?game=${videogame}`)
+        return axios(`/videogames/db?game=${videogame}`)
         .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH_FROM_DB, payload: res.data}))
     }
 }
 
 export const getVideogamesSearchFromAPI = videogame => {
     return (dispatch) => {
-        return axios(`http://localhost:3001/videogames/api?game=${videogame}`)
+        return axios(`/videogames/api?game=${videogame}`)
         .then(res => dispatch({type: GET_VIDEOGAMES_SEARCH_FROM_API, payload: res.data}))
     }
 }
 
 export const getVideogameDetail = id => {
     return (dispatch) => {
-        return axios(`http://localhost:3001/videogame/${id}`)
+        return axios(`/videogame/${id}`)
         .then(res => dispatch({type: GET_VIDEOGAME_DETAIL, payload: res.data}))
     }
 }
 
 export const getGenres = () => {
     return (dispatch) => {
-        return axios("http://localhost:3001/genres")
+        return axios("/genres")
         .then(res => {
             dispatch({type: GET_GENRES, payload: res.data})
         })

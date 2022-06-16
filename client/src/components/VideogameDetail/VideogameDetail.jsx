@@ -36,7 +36,7 @@ const VideogameDetail = (props) => {
     }
 
     const handleClickDelete = () => {
-        axios.delete(`http://localhost:3001/videogame/${id}/delete`)
+        axios.delete(`/videogame/${id}/delete`)
         .then(res => {
          if (res.status === 201) {
             dispatch(setLoadingVideogamesDB(true))

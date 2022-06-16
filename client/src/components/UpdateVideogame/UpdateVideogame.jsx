@@ -82,7 +82,7 @@ const UpdateVideogame = (props) => {
 
    const handleSubmit = e => {
       e.preventDefault();
-      axios.put(`http://localhost:3001/videogame/${id}/update`, input)
+      axios.put(`/videogame/${id}/update`, input)
       .then(res => {
          if (res.status === 201) {
             dispatch(setLoadingVideogamesDB(true))

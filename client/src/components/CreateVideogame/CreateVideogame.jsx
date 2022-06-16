@@ -69,7 +69,7 @@ const CreateVideogame = () => {
 
    const handleSubmit = e => {
       e.preventDefault();
-      axios.post('http://localhost:3001/videogame', input)
+      axios.post('/videogame', input)
       .then(res => {
          if (res.status === 201) {
             dispatch(setLoadingVideogamesDB(true))
