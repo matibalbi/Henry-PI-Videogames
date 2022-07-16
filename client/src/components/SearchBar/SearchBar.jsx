@@ -45,7 +45,7 @@ const SearchBar = () => {
           placeholder="Search video game..."
           value={inputSearch}
           onChange={handleInputChange}
-          className='inputSearch'
+          className={'inputSearch' + (inputSearch ? '' : ' inputSearchEmpty')}
           autoComplete="off"
         />
         {inputSearch && <button type="button" className={'eraseinputSearch'} onClick={handleEraseInput}>X</button>}

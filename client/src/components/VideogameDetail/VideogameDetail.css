@@ -1,6 +1,6 @@
 .backgroundDetail {
     background-image: url("../../img/landing.jpg");
-    background-size: 100vw 100vh;
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100vh;
@@ -141,14 +141,35 @@
     color: orange;
 }
 
+@media screen and (max-width: 500px) {
+    .backgroundDetail {
+        background-image: url("../../img/landing-mario.jpg");
+    }
+}
+
 @media screen and (max-width: 1535px) {
+    .imgDetailApi,
+    .containerDetailInfo {
+        width: 600px;
+    }
+    
+}
+
+@media screen and (max-width: 1300px) {
+    .imgDetailDB,
+    .imgDetailApi,
+    .containerDetailInfo {
+        width: 500px;
+    }
+    
+}
+
+@media screen and (max-width: 1100px) {
     .containerDetailBody {
         flex-direction: column;
         gap: 6vh;
     }
-}
-
-@media screen and (max-width: 800px) {
+    .imgDetailDB,
     .imgDetailApi,
     .containerDetailInfo {
         width: 600px;

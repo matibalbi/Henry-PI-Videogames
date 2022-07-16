@@ -18,11 +18,15 @@
 .inputSearch {
     padding-left: 10px;
     border: none;
-    width: 200px;
+    width: 167px;
 }
 
 .inputSearch:focus {
     outline: none;
+}
+
+.inputSearchEmpty {
+    width: 200px;
 }
 
 .eraseinputSearch {
@@ -53,6 +57,9 @@
         width: 150px;
     }
     .inputSearch {
-        width: 140px;
+        width: 117px;
+    }
+    .inputSearchEmpty {
+        width: 150px;
     }
 }
