@@ -1,12 +1,63 @@
 .backgroundLanding {
-    background-image: url("../../img/landing-text-empty.jpg");
-    background-size: 100vw 100vh;
+    /* background-image: url("../../img/landing-text-empty.jpg"); */
+    background-image: url("../../img/landing.jpg");
+    /* background-size: 100vw 100vh; */
+    background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100vh;
 }
 
-.wordsLuigi {
+.containerLanding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50vh;
+}
+
+.landingTitle {
+    color: #fff;
+    font-weight: 700;
+    font-size: 3.5em;
+    font-family: monospace;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.landingButton {
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: #ff2562;
+    color: #fff;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,.1), 0 2px 5px rgba(0,0,0,.5);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2.0em;
+    padding: 10px 10px;
+    letter-spacing: 5px;
+    animation-name: stretch;
+    animation-duration: 1.5s; 
+    animation-timing-function: ease-out; 
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+ 
+@keyframes stretch {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+.landingButton:hover {
+    background: #fff;
+    color: #ff2562;
+}
+
+/* .wordsLuigi {
     position: absolute;
     top: 7.5%;
     left: 9.2%;
@@ -68,46 +119,4 @@
         opacity: 1;
         transform: translateY(0%);
     }
-}
-
-.containerButtonIdNotFound {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    height: 71vh;
-    width: 95vw;
-}
-
-.landingButton {
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background: #ff2562;
-    color: #fff;
-    box-shadow: inset 0 5px 10px rgba(0,0,0,.1), 0 2px 5px rgba(0,0,0,.5);
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 2.0em;
-    padding: 10px 10px;
-    letter-spacing: 5px;
-    animation-name: stretch;
-    animation-duration: 1.5s; 
-    animation-timing-function: ease-out; 
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-}
- 
-@keyframes stretch {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.5);
-    }
-}
-
-.landingButton:hover {
-    background: #fff;
-    color: #ff2562;
-}
+} */

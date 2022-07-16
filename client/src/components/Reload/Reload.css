@@ -1,5 +1,6 @@
 .reloadActive {
-    margin: 0px 25px;
+    min-height: 25px;
+    margin: 0px 25px 15px;
     border: none;
     border-radius: 20px;
     cursor: pointer;

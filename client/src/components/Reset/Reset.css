@@ -1,6 +1,6 @@
 .resetActive {
-    height: 25px;
-    margin: 0px 25px;
+    min-height: 25px;
+    margin: 0px 25px 15px;
     border: none;
     border-radius: 20px;
     cursor: pointer;
@@ -15,6 +15,12 @@
     background: #fff;
     color: #ff2562
 }
+
+/* @media screen and (max-width: 717px) {
+    .resetActive {
+        margin: 30px 25px;
+    }
+  } */
 
 /* .resetDisabled {
     height: 25px;

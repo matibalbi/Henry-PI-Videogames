@@ -32,3 +32,13 @@
 .exitLink {
     margin-right: 0px;
 }
+
+@media screen and (max-width: 315px) {
+    .nav {
+        flex-direction: column;
+        border-right: none;
+    }
+    .containerHomeCreate {
+        flex-direction: column;
+    }
+}
