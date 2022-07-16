@@ -71,6 +71,7 @@
     text-transform: uppercase;
     font-weight: 700;
     padding: 10px;
+    text-align: center;
 }
 
 .containerDetailBody {
@@ -130,7 +131,7 @@
 }
 
 .descriptionDetail {
-    width: 700px;
+    width: fit-content;
     max-height: 250px;
     overflow: auto;
     font-weight: 500;
@@ -138,4 +139,50 @@
 }
 .orangeDetail {
     color: orange;
+}
+
+@media screen and (max-width: 1535px) {
+    .containerDetailBody {
+        flex-direction: column;
+        gap: 6vh;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .imgDetailApi,
+    .containerDetailInfo {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .imgDetailDB,
+    .imgDetailApi,
+    .containerDetailInfo {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .imgDetailDB,
+    .imgDetailApi,
+    .containerDetailInfo {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .imgDetailDB,
+    .imgDetailApi,
+    .containerDetailInfo {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .imgDetailDB,
+    .imgDetailApi,
+    .containerDetailInfo {
+        width: 200px;
+    }
 }

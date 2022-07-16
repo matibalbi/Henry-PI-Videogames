@@ -31,3 +31,35 @@
     height: 324px;
     border-radius: 20px;
 }
+
+@media screen and (max-width: 660px) {
+    .imgSearchNotFound,
+    .imgFilterNotFound {
+        width: 500px;
+        height: 281px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .imgSearchNotFound,
+    .imgFilterNotFound {
+        width: 400px;
+        height: 225px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .imgSearchNotFound,
+    .imgFilterNotFound {
+        width: 300px;
+        height: 169px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .imgSearchNotFound,
+    .imgFilterNotFound {
+        width: 200px;
+        height: 112px;
+    }
+}

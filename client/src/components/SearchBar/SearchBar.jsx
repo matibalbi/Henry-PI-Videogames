@@ -48,7 +48,7 @@ const SearchBar = () => {
           className='inputSearch'
           autoComplete="off"
         />
-        <button type="button" disabled={!inputSearch} className={'eraseinputSearch' + (inputSearch ? '' : ' eraseDisable')} onClick={handleEraseInput}>X</button>
+        {inputSearch && <button type="button" className={'eraseinputSearch'} onClick={handleEraseInput}>X</button>}
       </div>
       <button type="submit" className='search'>Search</button>
     </form>

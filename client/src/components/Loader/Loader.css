@@ -18,3 +18,17 @@
     height: 400px;
     border-radius: 20px;
 }
+
+@media screen and (max-width: 480px) {
+    .loader {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .loader {
+        width: 200px;
+        height: 200px;
+    }
+}

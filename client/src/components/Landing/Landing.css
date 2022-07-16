@@ -57,6 +57,12 @@
     color: #ff2562;
 }
 
+@media screen and (max-width: 500px) {
+    .backgroundLanding {
+        background-image: url("../../img/landing-mario.jpg");
+    }
+}
+
 /* .wordsLuigi {
     position: absolute;
     top: 7.5%;

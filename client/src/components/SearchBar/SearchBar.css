@@ -32,11 +32,6 @@
     cursor: pointer;
 }
 
-.eraseDisable {
-    color: #fff;
-    cursor: default;
-}
-
 .search {
     border: none;
     border-radius: 0 20px 20px 0;
@@ -58,6 +53,6 @@
         width: 150px;
     }
     .inputSearch {
-        width: 117px;
+        width: 140px;
     }
-  }
+}
