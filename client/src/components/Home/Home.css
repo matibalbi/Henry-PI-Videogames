@@ -4,6 +4,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100vh;
+    width: 100vh;
 }
 
 .homeSettingsContainer {
