@@ -4,9 +4,8 @@
 
 # Videogames App - Individual Project
 
-<p align="center">
-  <img height="200" src="./videogame.png" />
-</p>
+![ImgAppLanding](https://github.com/matibalbi/Henry-PI-Videogames/blob/main/client/src/img/Img%20Video%20Games%20App.PNG)
+![ImgAppHome](https://github.com/matibalbi/Henry-PI-Videogames/blob/main/client/src/img/Img%20Video%20Games%20App%20Home.PNG)
 
 ## Introduction
 
